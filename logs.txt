@@ -1,3 +1,7 @@
-day 1 - created the repo, with server and client. installed yarn, using that insted of npm for some reason.
-	Client with React using react-boilderplate, coding in Typescript, styling with styled-components.
-day 2 - cleaned all up and starting coding the Nav structure, no logic yet. first commit.
+day 1 - Created the repo, with server and client. installed yarn, using that insted of npm for some reason.
+	Client with React using react-boilderplate (should've used create-t3-app?), coding in Typescript, styling with styled-components.
+day 2 - Cleaned all up and starting coding the Nav structure, no logic yet. first commit.
+	Added an ssh-key to my sistem and github, so now I can git commit -m "comment" and git push origin master
+	without typing any password.
+	Developed a slider or carousel from scratch.
+	
