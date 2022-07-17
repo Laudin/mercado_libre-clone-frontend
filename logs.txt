@@ -1,0 +1,3 @@
+day 1 - created the repo, with server and client. installed yarn, using that insted of npm for some reason.
+	Client with React using react-boilderplate, coding in Typescript, styling with styled-components.
+day 2 - cleaned all up and starting coding the Nav structure, no logic yet. first commit.
