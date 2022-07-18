@@ -11,13 +11,21 @@ export function HomePage() {
         <title>HomePage</title>
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
-      <NavBar />
-      <Slider />
-      <Elresto>My HomePage</Elresto>
+      <Container>
+        <NavBar />
+        <Slider />
+        <Elresto>My HomePage</Elresto>
+      </Container>
     </>
   );
 }
 
 const Elresto = styled.div`
   height: 200vh;
+`
+const Container = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;500&display=swap');
+
+  font-family: 'Catamaran', sans-serif;
+  font-size: 0.9rem;
 `

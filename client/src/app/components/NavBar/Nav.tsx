@@ -5,7 +5,6 @@ import { SendTo } from './SendTo'
  
 export function Nav() {
 
-   const [hover, setHover] = React.useState(false)
    const categories = ['Vehículos', 'Inmuebles', 'Supermercado', 'Farmacia', 'Tecnología', 'Herramientas', 'Construcción', 'Deportes y Fitness', 'Moda', 'Juegos y Juguetes', 'Belleza y Ciudado Personal']
    const categoriesList = categories.map(item => <Item target="_blank" href="#">{item}</Item>)
 
@@ -20,13 +19,10 @@ export function Nav() {
       <Wrapper>
          <SendTo />
          <NavBar>
-            <Category
-               onMouseEnter={() => setHover(hover => true)}
-               onMouseLeave={() => setHover(hover => false)}
-               >
+            <Category>
                Categorias
                <CategoryWrapper>
-                  {hover && categoriesList}
+                  {categoriesList}
                </CategoryWrapper>
             </Category>
             <NavItem><Link href="#">Ofertas</Link></NavItem>
@@ -51,18 +47,28 @@ const NavBar = styled.ul`
    gap: 10px;
    list-style: none;
 `
-const Category = styled.li`
-   position: relative;
-`
 const Item = styled.a`
    color: white;
    text-decoration: none;
+   padding: 3px 10px;
+   &:hover{
+      background: lightskyblue;
+   }
 `
 const CategoryWrapper = styled.div`
    position: absolute;
    display: flex;
+   visibility: hidden;
    flex-direction: column;
    background: lightgray;
+   z-index: 99;
+   transition: all 0.8s;
+`
+const Category = styled.li`
+   position: relative;
+   &:hover ${CategoryWrapper} {
+      visibility: visible;
+   }
 `
 const NavItem = styled.li`
    
