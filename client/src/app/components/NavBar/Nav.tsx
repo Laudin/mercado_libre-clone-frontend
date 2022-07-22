@@ -6,7 +6,7 @@ import { SendTo } from './SendTo'
 export function Nav() {
 
    const categories = ['Vehículos', 'Inmuebles', 'Supermercado', 'Farmacia', 'Tecnología', 'Herramientas', 'Construcción', 'Deportes y Fitness', 'Moda', 'Juegos y Juguetes', 'Belleza y Ciudado Personal']
-   const categoriesList = categories.map((item, i) => <Item key={i} target="_blank" href="#">{item}</Item>)
+   const categoriesList: JSX.Element[] = categories.map((item, i) => <Item key={i} target="_blank" href="#">{item}</Item>)
 
    React.useEffect(() => {
       

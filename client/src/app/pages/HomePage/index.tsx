@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { NavBar } from '../../components/NavBar'
 import { Slider } from '../../components/Slider'
+import { ProductsList } from '../../components/ProductsList'
 import styled from 'styled-components/macro'
 
 export function HomePage() {
@@ -14,13 +15,23 @@ export function HomePage() {
       <Container>
         <NavBar />
         <Slider />
-        <Elresto>My HomePage</Elresto>
+        <ContentWrapper>
+          <Content>
+            <ProductsList />
+
+          </Content>
+        </ContentWrapper>
       </Container>
     </>
   );
 }
 
-const Elresto = styled.div`
+const ContentWrapper = styled.div`
+  
+`
+const Content = styled.div`
+  width: 1000px;
+  margin: auto;
   height: 200vh;
 `
 const Container = styled.div`

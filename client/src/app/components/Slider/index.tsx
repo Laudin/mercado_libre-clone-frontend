@@ -1,4 +1,3 @@
-import { visible } from 'chalk'
 import * as React from 'react'
 import styled from 'styled-components/macro'
  
@@ -27,6 +26,13 @@ export function Slider() {
       })
       return 
    }, [length])
+
+   React.useEffect(() => {
+      const timeout = setTimeout(() => {
+         increseSlide()
+      }, 1000)
+      return () => clearTimeout(timeout)
+   })
 
    const increseSlide = () => {
       if (!moving) {
@@ -59,12 +65,10 @@ export function Slider() {
             toggleMoving(moving => false)
          }, 500)
          let current = slideIndex+100
-         //console.log(current)
          if (null !== sld.current) {
             sld.current.style.transition = 'all 0.5s'
             sld.current.style.transform = `translate(${current}%, 0px)`
             if (current === 0) {
-               console.log(sld.current.style.transform)
                setTimeout(() => {
                   if (null !== sld.current) {
                      sld.current.style.transform = `translate(-${(length)*(100)}%, 0px)`
@@ -73,7 +77,6 @@ export function Slider() {
                }, 500)
             }
          }
-         console.log(slideIndex)
          setSlideIndex(slideIndex => slideIndex+100 >= 0 ? (length)*(-100) : slideIndex+100)
       }
    }
@@ -97,7 +100,7 @@ const Wrapper = styled.div`
    flex-wrap: nowrap;
    height: 300px;
    position: relative;
-   //overflow: hidden;
+   overflow: hidden;
 `
 const SlideLink = styled.a`
    width: 100%;
