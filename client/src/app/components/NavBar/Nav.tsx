@@ -19,9 +19,7 @@ export function Nav() {
     'Belleza y Ciudado Personal',
   ];
   const categoriesList: JSX.Element[] = categories.map((item, i) => (
-    <Link key={i} to={item}>
-      {item}
-    </Link>
+    <CatItem key={i}><MyLink to={item}>{item}</MyLink></CatItem>
   ));
 
   React.useEffect(() => {
@@ -37,22 +35,22 @@ export function Nav() {
           <CategoryWrapper>{categoriesList}</CategoryWrapper>
         </Category>
         <NavItem>
-          <Link to={'#'}>Ofertas</Link>
+          <MyLink to={'#'}>Ofertas</MyLink>
         </NavItem>
         <NavItem>
-          <Link to={'#'}>Historial</Link>
+          <MyLink to={'#'}>Historial</MyLink>
         </NavItem>
         <NavItem>
-          <Link to={'/supermercado'}>Supermercado</Link>
+          <MyLink to={'/supermercado'}>Supermercado</MyLink>
         </NavItem>
         <NavItem>
-          <Link to={'Moda'}>Moda</Link>
+          <MyLink to={'Moda'}>Moda</MyLink>
         </NavItem>
         <NavItem>
-          <Link to={'#'}>Vender</Link>
+          <MyLink to={'#'}>Vender</MyLink>
         </NavItem>
         <NavItem>
-          <Link to={'#'}>Ayuda</Link>
+          <MyLink to={'#'}>Ayuda</MyLink>
         </NavItem>
       </NavBar>
       <User />
@@ -70,22 +68,26 @@ const NavBar = styled.ul`
   gap: 10px;
   list-style: none;
 `;
-const Item = styled.a`
+/* const Item = styled.a`
   color: white;
   text-decoration: none;
   padding: 3px 10px;
   &:hover {
     background: lightskyblue;
   }
-`;
-const CategoryWrapper = styled.div`
+`; */
+const CategoryWrapper = styled.ul`
   position: absolute;
   display: flex;
-  visibility: hidden;
   flex-direction: column;
   background: lightgray;
+  border-radius: 5px;
+  width: 200px;
+  padding: 0px;
+  visibility: hidden;
+  left: -50%;
   z-index: 99;
-  transition: all 0.8s;
+  transition: all 0.3s;
 `;
 const Category = styled.li`
   position: relative;
@@ -93,8 +95,18 @@ const Category = styled.li`
     visibility: visible;
   }
 `;
-const NavItem = styled.li``;
-/* const Link = styled.a`
+const CatItem = styled.li`
+  padding: 10px;
+  list-style: none;
+  border-radius: 5px;
+  &:hover {
+    background: lightskyblue;
+  }
+ `
+const NavItem = styled.li`
+
+`;
+const MyLink = styled(Link)`
   color: black;
   text-decoration: none;
-`; */
+`;

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
-import { LoginHelper } from '../../actions/authentication';
 import * as api from '../../api/usersApi';
 import useToken from '../../hooks/useToken';
+import { UserContext } from '../../context/User';
 
 export function Login(props) {
   const [user, setUser] = React.useState({
@@ -14,9 +14,7 @@ export function Login(props) {
     token: string;
   }
   const { token, setToken } = useToken();
-  const [credentials, setCredentials] = React.useState<token | null>({
-    token: '',
-  });
+  const { currentUser, dispatch } = React.useContext(UserContext);
 
   const [reg, setReg] = React.useState(false);
   const [error, setError] = React.useState(false);
@@ -43,11 +41,14 @@ export function Login(props) {
   const handleSubmit = e => {
     e.preventDefault();
     api.loginUser(user.email, user.password).then((res: any) => {
-      console.log(res);
+      //console.log(res);
       if (res) {
         if (res.error) {
           setError(true);
         } else {
+          const {name, email} = res.data
+          const action = { type: 'set_user', name: name, email: email}
+          dispatch(action, {})
           setError(false);
           setToken(res.data.token);
         }
@@ -55,7 +56,7 @@ export function Login(props) {
     });
   };
   const showRegister = () => {
-    setReg(reg => true);
+    setReg(true);
   };
   const handleRegister = e => {
     e.preventDefault();
@@ -63,7 +64,6 @@ export function Login(props) {
   };
 
   React.useEffect(() => {
-    console.log('fade');
     if (ref.current !== null) {
       if (props.fade) {
         ref.current.style.opacity = '0';
@@ -106,19 +106,12 @@ export function Login(props) {
           />
         </>
       )}
-      {!reg && (
-        <Button type="submit" onClick={handleSubmit}>
-          Continuar
-        </Button>
-      )}
-      {reg && (
-        <Button type="submit" onClick={handleRegister}>
-          Continuar
-        </Button>
-      )}
-      <a href="#" onClick={showRegister}>
-        Register
-      </a>
+      {!reg ? 
+      <Button type="submit" onClick={handleSubmit}>Continuar1</Button> 
+      : 
+      <Button type="submit" onClick={handleRegister}>Continuar2</Button>
+      }
+      {!reg && <a href="#" onClick={showRegister}>Register</a>}
     </Form>
   );
 }

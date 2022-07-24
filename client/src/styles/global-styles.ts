@@ -30,4 +30,9 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
     font-size: inherit;
   }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
 `;

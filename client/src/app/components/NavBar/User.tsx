@@ -1,18 +1,31 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Login } from './Login';
+import { UserContext } from '../../context/User';
 
 export function User() {
   const [login, setLogin] = React.useState<boolean>(false);
   const [fade, setFade] = React.useState<boolean>(false);
+
+  const { currentUser, dispatch } = React.useContext(UserContext);
+
   const ref = React.useRef(null);
 
   const handleLogin = () => {
-    setFade(fade => false);
+    setFade(false);
     setLogin(login => !login);
   };
+  const handleLogout = () => {
+    dispatch({ type: 'clear_user' }, {})
+  }
+  const createAccount = () => {
+    setFade(false);
+    setLogin(login => !login);
+  }
 
   React.useEffect(() => {
+    console.log('currentUser: ')
+    console.log(currentUser)
     const callback = e => {
       if (e.target === ref.current) {
         setFade(fade => true);
@@ -22,12 +35,12 @@ export function User() {
     document.addEventListener('click', callback);
 
     return () => document.removeEventListener('click', callback);
-  });
+  }, []);
 
   return (
     <Wrapper>
-      <Link>Crear Cuenta</Link>
-      <Link onClick={handleLogin}>Ingresar</Link>
+      {currentUser.name ? <Link onClick={handleLogout}>Cerrar Sesion</Link> : <Link onClick={createAccount}>Crear cuenta</Link>}
+      <Link onClick={handleLogin}>{currentUser.name ? currentUser.name : 'Ingresar'}</Link>
       {login && (
         <LoginWrapper ref={ref}>
           <Login fade={fade} />
