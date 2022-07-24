@@ -8,7 +8,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;500&display=swap');
+
+    font-family: 'Catamaran', sans-serif;
+    font-size: 0.9rem;
+    background: #ebebeb;
   }
 
   #root {
@@ -18,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
 
   p,
   label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    //font-family: Georgia, Times, 'Times New Roman', serif;
     line-height: 1.5em;
   }
 
