@@ -1,6 +1,4 @@
 export const reducer = (state, action) => {
-  console.log('state: ',state)
-  console.log('action: ', action)
   switch (action.type) {
     case "set_user":
       localStorage.setItem('name', action.name)
@@ -30,6 +28,6 @@ export interface user {
 }
 
 export const initialState: user = {
-  name: '',
-  email: ''
+  name: localStorage.getItem('name') as string,
+  email: localStorage.getItem('email') as string
 }

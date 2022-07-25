@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
+import logo from './assets/logo__large_plus.png';
 import { User } from './User';
 import { SendTo } from './SendTo';
 import { Link } from 'react-router-dom';
 
-export function Nav() {
+export function Nav(props) {
   const categories = [
     'Vehículos',
     'Inmuebles',
@@ -19,7 +20,7 @@ export function Nav() {
     'Belleza y Ciudado Personal',
   ];
   const categoriesList: JSX.Element[] = categories.map((item, i) => (
-    <CatItem key={i}><MyLink to={item}>{item}</MyLink></CatItem>
+    <MyLink key={i} to={item}>{item}</MyLink>
   ));
 
   React.useEffect(() => {
@@ -28,30 +29,18 @@ export function Nav() {
 
   return (
     <Wrapper>
-      <SendTo />
+      {!props.location ? <SendTo /> : <Link to="/"><Logo src={logo} /></Link>}
       <NavBar>
         <Category>
           Categorias
           <CategoryWrapper>{categoriesList}</CategoryWrapper>
         </Category>
-        <NavItem>
-          <MyLink to={'#'}>Ofertas</MyLink>
-        </NavItem>
-        <NavItem>
-          <MyLink to={'#'}>Historial</MyLink>
-        </NavItem>
-        <NavItem>
-          <MyLink to={'/supermercado'}>Supermercado</MyLink>
-        </NavItem>
-        <NavItem>
-          <MyLink to={'Moda'}>Moda</MyLink>
-        </NavItem>
-        <NavItem>
-          <MyLink to={'#'}>Vender</MyLink>
-        </NavItem>
-        <NavItem>
-          <MyLink to={'#'}>Ayuda</MyLink>
-        </NavItem>
+        <MyLink to={'#'}>Ofertas</MyLink>
+        <MyLink to={'#'}>Historial</MyLink>
+        <MyLink to={'/supermercado'}>Supermercado</MyLink>
+        <MyLink to={'Moda'}>Moda</MyLink>
+        <MyLink to={'/publish'}>Vender</MyLink>
+        <MyLink to={'#'}>Ayuda</MyLink>
       </NavBar>
       <User />
     </Wrapper>
@@ -61,21 +50,19 @@ export function Nav() {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  width: 95%;
 `;
-const NavBar = styled.ul`
+const NavBar = styled.div`
   display: flex;
+  align-items: flex-end;
   gap: 10px;
-  list-style: none;
 `;
-/* const Item = styled.a`
-  color: white;
+const MyLink = styled(Link)`
+  color: black;
   text-decoration: none;
-  padding: 3px 10px;
-  &:hover {
-    background: lightskyblue;
-  }
-`; */
+`;
 const CategoryWrapper = styled.ul`
   position: absolute;
   display: flex;
@@ -88,25 +75,20 @@ const CategoryWrapper = styled.ul`
   left: -50%;
   z-index: 99;
   transition: all 0.3s;
+  & ${MyLink} {
+    padding: 10px;
+    border-radius: 5px;
+    &:hover {
+      background: lightskyblue;
+    }
+  }
 `;
-const Category = styled.li`
+const Category = styled.div`
   position: relative;
   &:hover ${CategoryWrapper} {
     visibility: visible;
   }
 `;
-const CatItem = styled.li`
-  padding: 10px;
-  list-style: none;
-  border-radius: 5px;
-  &:hover {
-    background: lightskyblue;
-  }
- `
-const NavItem = styled.li`
-
-`;
-const MyLink = styled(Link)`
-  color: black;
-  text-decoration: none;
+const Logo = styled.img`
+  display: flex;
 `;

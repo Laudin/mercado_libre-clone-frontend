@@ -62,7 +62,7 @@ app.get('/user', async (req: Request, res: Response, next: CallableFunction) => 
             token = jwt.sign(
                { userId: user.id, email: user.email },
                "secretkeyappearshere",
-               { expiresIn: "1h" }
+               //{ expiresIn: "1h" } never
             );
          } catch (err) {
             console.error(err);
@@ -72,7 +72,7 @@ app.get('/user', async (req: Request, res: Response, next: CallableFunction) => 
          res.status(200).json({
             success: true,
             data: {
-               id: user.id,
+               name: user.name,
                email: user.email,
                token: token
             }

@@ -1,8 +1,8 @@
 day 1 - Created the repo, with server and client. installed yarn, using that insted of npm for some reason.
-	Client with React using react-boilderplate (should've used create-t3-app?), coding in Typescript, styling with styled-components.
+	Client with React using react-boilderplate (should've used create-t3-app?), coding in Typescript, 
+	styling with styled-components.
 day 2 - Cleaned all up and starting coding the Nav structure, no logic yet. first commit.
-	Added an ssh-key to my sistem and github, so now I can git commit -m "comment" and git push origin master
-	without typing any password.
+	Added an ssh-key to my sistem and github, so now I can git commit -m "comment" and git push origin master.
 	Developed a slider or carousel from scratch.
 day 3 - Fixed the carousel, now it has another mechanism where it moves all the slider wrapper trought the X axis
 	and it has cloned elements (first and last) that act as the start and end of the carousel. it's hard to explain.
@@ -17,4 +17,4 @@ day 6 - Authentication works as it should. Created a Custom Hook so I can reuse 
 	Working on the api. All the getters and setters
 day 7 - Had to update react-router because the boilerplate usess an older version (v5.x) and v6 is more powerfull
 	Also updated react from v16 to v18
-	
+	Implemented a global state using React Context to keep the logged User info around

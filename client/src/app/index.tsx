@@ -15,7 +15,8 @@ import { NavBar } from './components/NavBar';
 import { HomePage } from './pages/HomePage/Loadable';
 import { ProductListPage } from './pages/ProductListPage/Loadable';
 import { ProductPage } from './pages/ProductPage/Loadable';
-import { NotFoundPage } from './components/NotFoundPage/Loadable';
+import { PublishPage } from './pages/PublishPage/Loadable'
+import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 import { UserProvider } from './context/User'
 
@@ -34,6 +35,7 @@ export function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/publish" element={<PublishPage />} />
           <Route path=":category" element={<ProductListPage />} />
           <Route path=":category/:id" element={<ProductPage />} />
           <Route element={<NotFoundPage />} />

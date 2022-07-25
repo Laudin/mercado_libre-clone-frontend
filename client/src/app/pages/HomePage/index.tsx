@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { NavBar } from '../../components/NavBar';
 import { Slider } from '../../components/Slider';
-import { ProductsList } from '../../components/ProductsList';
+import { ProductsList } from '../../components/ProductsSlider';
 import styled from 'styled-components/macro';
 
 export function HomePage() {

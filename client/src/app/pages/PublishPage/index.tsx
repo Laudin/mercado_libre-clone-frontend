@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ProductList } from '../../components/ProductList'
-import { Filter } from '../../components/Filter'
+import { PublishForm } from '../../components/PublishForm'
 import styled from 'styled-components/macro';
+import useToken from '../../hooks/useToken';
+import * as productApi from '../../api/productsApi';
 
-export function ProductListPage(props) {
-
+export function PublishPage(props) {
   return (
     <>
       <Helmet>
@@ -13,13 +13,11 @@ export function ProductListPage(props) {
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
       <Wrapper>
-        <Filter />
-        <ProductList />
+        <PublishForm />
       </Wrapper>
     </>
   );
 }
 
 const Wrapper = styled.div`
-
 `;

@@ -5,14 +5,13 @@ import useToken from '../../hooks/useToken';
 import { UserContext } from '../../context/User';
 
 export function Login(props) {
-  const [user, setUser] = React.useState({
+
+  const [user, setUser] = React.useState({ //should implement a reducer for this
     name: '',
     email: '',
     password: '',
   });
-  interface token {
-    token: string;
-  }
+
   const { token, setToken } = useToken();
   const { currentUser, dispatch } = React.useContext(UserContext);
 

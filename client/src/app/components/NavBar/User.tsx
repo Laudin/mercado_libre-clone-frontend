@@ -54,6 +54,7 @@ export function User() {
 
 const Wrapper = styled.div`
   display: flex;
+  align-items: flex-end;
   gap: 10px;
   list-style: none;
 `;

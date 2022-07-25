@@ -21,13 +21,21 @@ export function Search() {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 5px;
+  width: 95%;
 `;
 const Logo = styled.img`
   display: flex;
 `;
 const SearchBar = styled.div`
   display: flex;
+  flex: 1;
+  justify-content: center;
+  height: 40px;
 `;
 const SearchButton = styled.img``;
-const SearchInput = styled.input``;
+const SearchInput = styled.input`
+  flex: 0.5;
+`;
