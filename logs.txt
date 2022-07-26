@@ -18,3 +18,8 @@ day 6 - Authentication works as it should. Created a Custom Hook so I can reuse 
 day 7 - Had to update react-router because the boilerplate usess an older version (v5.x) and v6 is more powerfull
 	Also updated react from v16 to v18
 	Implemented a global state using React Context to keep the logged User info around
+	Started creating a publish product page form
+	Publish a product:
+	Titulo -> Categoria -> Marca & Modelo(opt) -> Condicion -> Color?/Caracts -> Fotos(portada) -> Stock -> Ficha tecnica -> Precio -> descripcion -> Ver publicacion
+day 8 - Pollude the form with useForm register and error for every section of the form
+day 9 - 
