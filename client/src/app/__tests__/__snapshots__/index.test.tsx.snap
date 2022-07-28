@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should render and match the snapshot 1`] = `
+<BrowserRouter>
+  <Helmet
+    defaultTitle="React Boilerplate"
+    defer={true}
+    encodeSpecialCharacters={true}
+    htmlAttributes={
+      Object {
+        "lang": undefined,
+      }
+    }
+    prioritizeSeoTags={false}
+    titleTemplate="%s - React Boilerplate"
+  >
+    <meta
+      content="A React Boilerplate application"
+      name="description"
+    />
+  </Helmet>
+  <UserProvider>
+    <NavBar />
+    <Routes>
+      <Route
+        element={<Unknown />}
+        path="/"
+      />
+      <Route
+        element={<Unknown />}
+        path="/publish"
+      />
+      <Route
+        element={<Unknown />}
+        path=":category"
+      />
+      <Route
+        element={<Unknown />}
+        path=":category/:id"
+      />
+      <Route
+        element={<Unknown />}
+      />
+    </Routes>
+  </UserProvider>
+  <Memo(l) />
+</BrowserRouter>
+`;

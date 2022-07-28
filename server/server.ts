@@ -1,10 +1,13 @@
-import express, {Request, Response} from 'express'
+import express, { Request, Response } from 'express'
 import {
    getUser,
    createUser,
    getProductListByName,
-   getProductListByCategory
+   getProductListByCategory,
+   createProduct,
 } from './script'
+const multer = require('multer')
+const upload = multer()
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const app = express()
@@ -12,8 +15,10 @@ const port = 3001
 
 app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+//app.use(upload.any())
 
-interface extendedReq extends Request{
+interface extendedReq extends Request {
    user: {
       userId: string
       email: string
@@ -26,11 +31,14 @@ function authenticateUser(req: Request, res: Response, next: CallableFunction) {
    const authHeader = req.headers.authorization
    const token = authHeader && authHeader.split(' ')[1]
 
-   if (!token) return res.status(200).send({error: {message: 'Unauthorize'}}) //401 = Unauthorize
+   console.log(token)
+   if (!token) {
+      return res.status(200).send({ error: { message: 'Unauthorize' } })   //401 = Unauthorize
+   }
 
    jwt.verify(token, "secretkeyappearshere", (err: any, user: any) => {
-      if (err) return res.status(200).send({error: {message: 'Forbidden'}}) //403 = Forbidden
-      
+      if (err) return res.status(200).send({ error: { message: 'Forbidden' } }) //403 = Forbidden
+
       //console.log(user)
       req.headers.user = user   //creates new prop user but cant directly in req because of type restrictions
 
@@ -40,16 +48,15 @@ function authenticateUser(req: Request, res: Response, next: CallableFunction) {
 
 app.get('/', (req: Request, res: Response) => {
    res.status(200).json({
-      "Foo": "Bar",
       "Time": new Date().toISOString()
    })
 })
 app.get('/user', async (req: Request, res: Response, next: CallableFunction) => {
-   const { email, password }  = req.query
+   const { email, password } = req.query
    try {
       if (!(email && password)) {
          //400 = Bad req
-         res.status(200).send({error: {message: 'Please provide full credentials'}})
+         res.status(200).send({ error: { message: 'Please provide full credentials' } })
       } else {
          const user = await getUser(email as string, password as string)
          if (!user) {
@@ -72,6 +79,7 @@ app.get('/user', async (req: Request, res: Response, next: CallableFunction) => 
          res.status(200).json({
             success: true,
             data: {
+               id: user.id,
                name: user.name,
                email: user.email,
                token: token
@@ -88,7 +96,7 @@ app.post('/user', async (req: Request, res: Response) => {
    const { name, email, password } = req.body
    if (!(name && email && password)) {
       //400 = Bad req
-      res.status(200).send({error: {message: 'Please provide full credentials'}})
+      res.status(200).send({ error: { message: 'Please provide full credentials' } })
    } else {
       res.status(200).json(
          await createUser(name as string, email as string, password as string)
@@ -106,6 +114,15 @@ app.get('/product', authenticateUser, async (req: Request, res: Response, next: 
       }
    })
 })
+app.post('/product', authenticateUser, upload.array('photos'), async (req: any, res: Response, next: CallableFunction) => {
+   //console.log(req)
+   console.log(req.files)
+   console.log(req.body)
+   res.status(200).json(
+      await createProduct(req.body, req.files)
+   )
+})
+
 app.get('/category', authenticateUser, async (req: Request, res: Response, next: CallableFunction) => {
    console.log(req.headers.user)
    const { name } = req.query
@@ -119,5 +136,5 @@ app.get('/category', authenticateUser, async (req: Request, res: Response, next:
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+   console.log(`Example app listening on port ${port}`)
 })

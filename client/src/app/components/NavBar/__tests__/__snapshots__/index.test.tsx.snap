@@ -1,0 +1,431 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavBar /> should match snapshot 1`] = `
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 5px;
+  width: 95%;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.c4 {
+  -webkit-flex: 0.5;
+  -ms-flex: 0.5;
+  flex: 0.5;
+}
+
+.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  gap: 10px;
+  list-style: none;
+}
+
+.c17 {
+  color: black;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c8 {
+  margin: 0;
+}
+
+.c9 {
+  margin: 0;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  width: 95%;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.c15 {
+  color: black;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c13 {
+  position: absolute;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background: lightgray;
+  border-radius: 5px;
+  width: 200px;
+  padding: 0px;
+  visibility: hidden;
+  left: -50%;
+  z-index: 99;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.c13 .c14 {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.c13 .c14:hover {
+  background: lightskyblue;
+}
+
+.c11 {
+  position: relative;
+}
+
+.c11:hover .c12 {
+  visibility: visible;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: #fff159;
+  padding: 0 20px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        className="c2"
+        src="logo__large_plus.png"
+      />
+    </a>
+    <div
+      className="c3"
+    >
+      <img
+        className=""
+        src="#"
+      />
+      <input
+        className="c4"
+        placeholder="Buscar.."
+      />
+    </div>
+    <p>
+      Envíos gratis en 24 hs a partir de $4.000
+    </p>
+  </div>
+  <div
+    className="c5"
+  >
+    <div
+      className="c6"
+    >
+      <img
+        className=""
+        src=""
+      />
+      <div
+        className="c7"
+      >
+        <p
+          className="c8"
+        >
+          Enviar a
+        </p>
+        <p
+          className="c9"
+        >
+          Capital Federal
+        </p>
+      </div>
+    </div>
+    <div
+      className="c10"
+    >
+      <div
+        className="c11"
+      >
+        Categorias
+        <ul
+          className="c12 c13"
+        >
+          <a
+            className="c14 c15"
+            href="/Vehículos"
+            onClick={[Function]}
+          >
+            Vehículos
+          </a>
+          <a
+            className="c14 c15"
+            href="/Inmuebles"
+            onClick={[Function]}
+          >
+            Inmuebles
+          </a>
+          <a
+            className="c14 c15"
+            href="/Supermercado"
+            onClick={[Function]}
+          >
+            Supermercado
+          </a>
+          <a
+            className="c14 c15"
+            href="/Farmacia"
+            onClick={[Function]}
+          >
+            Farmacia
+          </a>
+          <a
+            className="c14 c15"
+            href="/Tecnología"
+            onClick={[Function]}
+          >
+            Tecnología
+          </a>
+          <a
+            className="c14 c15"
+            href="/Herramientas"
+            onClick={[Function]}
+          >
+            Herramientas
+          </a>
+          <a
+            className="c14 c15"
+            href="/Construcción"
+            onClick={[Function]}
+          >
+            Construcción
+          </a>
+          <a
+            className="c14 c15"
+            href="/Deportes y Fitness"
+            onClick={[Function]}
+          >
+            Deportes y Fitness
+          </a>
+          <a
+            className="c14 c15"
+            href="/Moda"
+            onClick={[Function]}
+          >
+            Moda
+          </a>
+          <a
+            className="c14 c15"
+            href="/Juegos y Juguetes"
+            onClick={[Function]}
+          >
+            Juegos y Juguetes
+          </a>
+          <a
+            className="c14 c15"
+            href="/Belleza y Ciudado Personal"
+            onClick={[Function]}
+          >
+            Belleza y Ciudado Personal
+          </a>
+        </ul>
+      </div>
+      <a
+        className="c14 c15"
+        href="/"
+        onClick={[Function]}
+      >
+        Ofertas
+      </a>
+      <a
+        className="c14 c15"
+        href="/"
+        onClick={[Function]}
+      >
+        Historial
+      </a>
+      <a
+        className="c14 c15"
+        href="/supermercado"
+        onClick={[Function]}
+      >
+        Supermercado
+      </a>
+      <a
+        className="c14 c15"
+        href="/Moda"
+        onClick={[Function]}
+      >
+        Moda
+      </a>
+      <a
+        className="c14 c15"
+        href="/publish"
+        onClick={[Function]}
+      >
+        Vender
+      </a>
+      <a
+        className="c14 c15"
+        href="/"
+        onClick={[Function]}
+      >
+        Ayuda
+      </a>
+    </div>
+    <div
+      className="c16"
+    >
+      <a
+        className="c17"
+        onClick={[Function]}
+      >
+        Crear cuenta
+      </a>
+      <a
+        className="c17"
+        onClick={[Function]}
+      >
+        Ingresar
+      </a>
+      <a
+        className="c17"
+      >
+        Mis Compras
+      </a>
+      <a
+        className="c17"
+      >
+        Carrito
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<NavBar /> should render 1`] = `
+<Router
+  location={
+    Object {
+      "hash": "",
+      "key": "default",
+      "pathname": "/",
+      "search": "",
+      "state": null,
+    }
+  }
+  navigationType="POP"
+  navigator={
+    Object {
+      "action": "POP",
+      "back": [Function],
+      "block": [Function],
+      "createHref": [Function],
+      "forward": [Function],
+      "go": [Function],
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "default",
+        "pathname": "/",
+        "search": "",
+        "state": null,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <UserProvider>
+    <NavBar />
+  </UserProvider>
+</Router>
+`;

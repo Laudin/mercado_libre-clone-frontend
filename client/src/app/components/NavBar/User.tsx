@@ -2,11 +2,12 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Login } from './Login';
 import { UserContext } from '../../context/User';
+import useToken from '../../hooks/useToken'
 
 export function User() {
   const [login, setLogin] = React.useState<boolean>(false);
   const [fade, setFade] = React.useState<boolean>(false);
-
+  const { setToken } = useToken()
   const { currentUser, dispatch } = React.useContext(UserContext);
 
   const ref = React.useRef(null);
@@ -17,6 +18,7 @@ export function User() {
   };
   const handleLogout = () => {
     dispatch({ type: 'clear_user' }, {})
+    setToken('')
   }
   const createAccount = () => {
     setFade(false);
@@ -24,8 +26,8 @@ export function User() {
   }
 
   React.useEffect(() => {
-    console.log('currentUser: ')
-    console.log(currentUser)
+    /* console.log('currentUser: ')
+    console.log(currentUser) */
     const callback = e => {
       if (e.target === ref.current) {
         setFade(fade => true);

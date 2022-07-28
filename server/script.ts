@@ -4,7 +4,7 @@ const prisma = new PrismaClient()
 export async function getUser(email: string, password: string) {
    const user = await prisma.user.findFirst({
       where: {
-         AND: [{email: email}, {password: password}]
+         AND: [{ email: email }, { password: password }]
       }
    })
    return user
@@ -38,14 +38,43 @@ export async function getProductListByName(name: string) {
    })
    return products
 }
-export async function createProdct(name: string, price: number, description: string, sellerId: string, category: string) {
+export async function createProduct(product: any, photos: any) {
+   console.log(photos)
    const products = await prisma.product.create({
       data: {
-         name: name,
-         price: price,
-         description: description,
-         sellerId: sellerId,
-         categoryName: category
+         name: product.name,
+         brand: product.brand,
+         model: product.model,
+         stock: parseInt(product.stock),
+         state: product.state,
+         category: {
+            connectOrCreate: {
+               where: {
+                  name: product.category,
+               },
+               create: {
+                  name: product.category,
+               },
+            },
+         },
+         photos: 'photos',
+         price: parseFloat(product.price),
+         description: product.description,
+         seller: {
+            connectOrCreate: {
+               where: {
+                  email: product.seller.email
+               },
+               create: {
+                  name: product.seller.name,
+                  email: product.seller.email,
+                  password: '1234'
+               },
+            },
+         },
+      },
+      include: {
+         seller: true,
       }
    })
    return products
@@ -60,14 +89,15 @@ export async function getProductListByCategory(name: string) {
    return products
 }
 async function main() {
-   //console.log(await prisma.product.deleteMany({}) )
-   /* const user = await prisma.user.create({ 
+   //console.log(await prisma.product.deleteMany({}))
+   console.log(await prisma.product.findMany({}))
+   /* const query = await prisma.user.create({ 
    data: {
       name: 'Genos',
       email: 'sabriimaidanaa1@gmail.com',
       password: '1234'
    } }) */
-   /* const product = await prisma.product.create({
+   /* const query = await prisma.product.create({
       data: {
          name: 'Cafetera',
          price: 49.99,
@@ -76,12 +106,11 @@ async function main() {
          categoryName: 'Electrodomésticos'
       }
    }) */
-   /* const category = await prisma.category.create({
+   /* const query = await prisma.category.create({
       data: {
          name: 'Electrodomésticos'
       }
    }) */
-
    //console.log(product)
 }
 

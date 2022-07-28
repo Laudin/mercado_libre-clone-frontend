@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> should render 1`] = `
+<React.Fragment>
+  <Helmet
+    defer={true}
+    encodeSpecialCharacters={true}
+    prioritizeSeoTags={false}
+  >
+    <title>
+      HomePage
+    </title>
+    <meta
+      content="A Boilerplate application homepage"
+      name="description"
+    />
+  </Helmet>
+  <HomePage__Container>
+    <Slider />
+    <HomePage__ContentWrapper>
+      <HomePage__Content>
+        <ProductsList />
+      </HomePage__Content>
+    </HomePage__ContentWrapper>
+  </HomePage__Container>
+</React.Fragment>
+`;

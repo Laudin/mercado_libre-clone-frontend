@@ -45,8 +45,8 @@ export function Login(props) {
         if (res.error) {
           setError(true);
         } else {
-          const {name, email} = res.data
-          const action = { type: 'set_user', name: name, email: email}
+          const {id, name, email} = res.data
+          const action = { type: 'set_user', id: id, name: name, email: email}
           dispatch(action, {})
           setError(false);
           setToken(res.data.token);

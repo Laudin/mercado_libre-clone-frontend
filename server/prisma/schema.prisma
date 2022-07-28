@@ -22,6 +22,11 @@ model User {
 model Product {
   id           String   @id @default(uuid())
   name         String
+  brand        String
+  model        String
+  stock        Int
+  state        String
+  photos       String[]
   price        Float
   description  String
   createdAt    DateTime @default(now())
@@ -30,14 +35,13 @@ model Product {
   sellerId     String
   favoriteBy   User?    @relation("favorite", fields: [favoriteById], references: [id])
   favoriteById String?
-  category     Category @relation(fields: [categoryName], references: [name])
+  category     Category @relation("category", fields: [categoryName], references: [name])
   categoryName String
 
   @@index([name])
 }
 
 model Category {
-  id      Int       @id @default(autoincrement())
-  name    String    @unique @default(uuid())
-  Product Product[]
+  name    String    @id @unique @default(uuid())
+  Product Product[] @relation("category")
 }

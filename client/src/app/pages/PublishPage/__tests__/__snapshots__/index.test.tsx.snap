@@ -1,0 +1,376 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PublishPage /> should match snapshot 1`] = `
+<React.Fragment>
+  <Helmet
+    defer={true}
+    encodeSpecialCharacters={true}
+    prioritizeSeoTags={false}
+  >
+    <title>
+      Vender
+    </title>
+    <meta
+      content="Publish new product to sell"
+      name="publish"
+    />
+  </Helmet>
+  <PublishPage__Wrapper>
+    <h1>
+      Completa el formulario del producto
+    </h1>
+    <PublishPage__Form
+      id="Form"
+      onSubmit={[Function]}
+    >
+      <PublishPage__Section1
+        id="1"
+      >
+        <PublishPage__Label>
+          Indicá tu producto, marca y modelo
+        </PublishPage__Label>
+        <p>
+          Este será el título de tu producto. 
+          <a
+            href="#"
+          >
+            Cómo armar un buen título
+          </a>
+        </p>
+        <PublishPage__Err />
+        <PublishPage__Input
+          name="name"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="Ej: Microondas Atma MD18"
+        />
+        <PublishPage__Next
+          onClick={[Function]}
+          type="button"
+        >
+          Siguiente
+        </PublishPage__Next>
+      </PublishPage__Section1>
+      <PublishPage__Section
+        id="2"
+      >
+        <PublishPage__Label>
+          Seleccioná una categoría
+        </PublishPage__Label>
+        <p>
+          Categoría sobre la que caerá tu producto. Las personas podrán encontrar tu producto bajo esta categoría.
+          <a
+            href="#"
+          >
+            ¿De qué categoría es mi producto?
+          </a>
+        </p>
+        <PublishPage__Err />
+        <PublishPage__Select
+          name="category"
+          onBlur={[Function]}
+          onChange={[Function]}
+        >
+          <option
+            value=""
+          >
+            --Seleccione una categoría--
+          </option>
+          <option
+            value="Vehículos"
+          >
+            Vehículos
+          </option>
+          <option
+            value="Inmuebles"
+          >
+            Inmuebles
+          </option>
+          <option
+            value="Supermercado"
+          >
+            Supermercado
+          </option>
+          <option
+            value="Tecnología"
+          >
+            Tecnología
+          </option>
+          <option
+            value="Hogar y Muebles"
+          >
+            Hogar y Muebles
+          </option>
+          <option
+            value="Electrodomésticos"
+          >
+            Electrodomésticos
+          </option>
+          <option
+            value="Herramientas"
+          >
+            Herramientas
+          </option>
+          <option
+            value="Construcción"
+          >
+            Construcción
+          </option>
+          <option
+            value="Deportes y Fítness"
+          >
+            Deportes y Fítness
+          </option>
+          <option
+            value="Moda"
+          >
+            Moda
+          </option>
+          <option
+            value="Juegos y Juguetes"
+          >
+            Juegos y Juguetes
+          </option>
+          <option
+            value="Bebés"
+          >
+            Bebés
+          </option>
+          <option
+            value="Belleza y Cuidado Personal"
+          >
+            Belleza y Cuidado Personal
+          </option>
+          <option
+            value="Salud y Equipamiento Médico"
+          >
+            Salud y Equipamiento Médico
+          </option>
+          <option
+            value="Industrias y Oficinas"
+          >
+            Industrias y Oficinas
+          </option>
+          <option
+            value="Agro"
+          >
+            Agro
+          </option>
+          <option
+            value="Productos Sustentables"
+          >
+            Productos Sustentables
+          </option>
+          <option
+            value="Servicios"
+          >
+            Servicios
+          </option>
+        </PublishPage__Select>
+        <PublishPage__Next
+          onClick={[Function]}
+          type="button"
+        >
+          Siguiente
+        </PublishPage__Next>
+      </PublishPage__Section>
+      <PublishPage__Section
+        id="3"
+      >
+        <PublishPage__Label>
+          Marca
+        </PublishPage__Label>
+        <PublishPage__Err />
+        <PublishPage__Input
+          name="brand"
+          onBlur={[Function]}
+          onChange={[Function]}
+        />
+        <PublishPage__Label>
+          Modelo
+        </PublishPage__Label>
+        <p>
+          Si no tienes el modelo de tu producto presiona N/A
+        </p>
+        <PublishPage__Err />
+        <PublishPage__Container>
+          <PublishPage__Input
+            id="modelInput"
+            name="model"
+            onBlur={[Function]}
+            onChange={[Function]}
+          />
+          <label>
+            N/A
+          </label>
+          <PublishPage__Input
+            id="checkbox"
+            name="model"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            type="checkbox"
+            value="N/A"
+          />
+        </PublishPage__Container>
+        <PublishPage__Next
+          onClick={[Function]}
+          type="button"
+        >
+          Siguiente
+        </PublishPage__Next>
+      </PublishPage__Section>
+      <PublishPage__Section
+        id="4"
+      >
+        <PublishPage__Label>
+          Es tu producto nuevo o usado?
+        </PublishPage__Label>
+        <PublishPage__Err />
+        <PublishPage__Container>
+          <label>
+            Usado
+          </label>
+          <PublishPage__Input
+            name="state"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="Usado"
+          />
+        </PublishPage__Container>
+        <PublishPage__Container>
+          <label>
+            Nuevo
+          </label>
+          <PublishPage__Input
+            name="state"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="Nuevo"
+          />
+        </PublishPage__Container>
+        <PublishPage__Next
+          onClick={[Function]}
+          type="button"
+        >
+          Siguiente
+        </PublishPage__Next>
+      </PublishPage__Section>
+      <PublishPage__Section
+        id="5"
+      >
+        <PublishPage__Label>
+          Sube 1 o más fotos
+        </PublishPage__Label>
+        <p>
+          La primera foto será la portada. Es aconsejable que tenga un fondo blanco. 
+          <a
+            href="#"
+          >
+            ¿Cómo sacar una buena foto de tu producto?
+          </a>
+        </p>
+        <PublishPage__Err />
+        <PublishPage__Input
+          name="photos"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="file"
+        />
+        <div>
+          <img
+            src=""
+          />
+        </div>
+        <PublishPage__Next
+          onClick={[Function]}
+          type="button"
+        >
+          Siguiente
+        </PublishPage__Next>
+      </PublishPage__Section>
+      <PublishPage__Section
+        id="6"
+      >
+        <PublishPage__Label>
+          Cuánto costará tu producto?
+        </PublishPage__Label>
+        <PublishPage__Err />
+        <PublishPage__Container>
+          <label>
+            $
+          </label>
+          <PublishPage__Input
+            min={0}
+            name="price"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="0.00"
+            step={0.01}
+            type="number"
+          />
+        </PublishPage__Container>
+        <PublishPage__Next
+          onClick={[Function]}
+          type="button"
+        >
+          Siguiente
+        </PublishPage__Next>
+      </PublishPage__Section>
+      <PublishPage__Section
+        id="7"
+      >
+        <PublishPage__Label>
+          Cuál es el stock de tu producto?
+        </PublishPage__Label>
+        <PublishPage__Err />
+        <PublishPage__Input
+          min={0}
+          name="stock"
+          onBlur={[Function]}
+          onChange={[Function]}
+          type="number"
+        />
+        <PublishPage__Next
+          onClick={[Function]}
+          type="button"
+        >
+          Siguiente
+        </PublishPage__Next>
+      </PublishPage__Section>
+      <PublishPage__Section
+        id="8"
+      >
+        <PublishPage__Label>
+          Una descripción de tu producto
+          <p
+            id="optional"
+          >
+            (opcional)
+          </p>
+        </PublishPage__Label>
+        <textarea
+          name="description"
+          onBlur={[Function]}
+          onChange={[Function]}
+        />
+        <PublishPage__Next
+          onClick={[Function]}
+          type="button"
+        >
+          Siguiente
+        </PublishPage__Next>
+      </PublishPage__Section>
+      <PublishPage__Section
+        id="9"
+      >
+        <input
+          type="submit"
+        />
+      </PublishPage__Section>
+    </PublishPage__Form>
+  </PublishPage__Wrapper>
+</React.Fragment>
+`;

@@ -1,6 +1,4 @@
-//import useToken from '../hooks/useToken';
-
-//const { token, setToken } = useToken();
+import { Product } from '../../types'
 
 export async function getProductsByName(name: string, token: any) {
   const header = new Headers({
@@ -33,20 +31,27 @@ export async function getProductsByCategory(category: string, token: any) {
 
   return products;
 }
-export async function setNewProduct(name: string, token: any) {
+export async function setNewProduct(product: Product, token: any) {
+  const form = new FormData()
+  for (const [key, value] of Object.entries(product)) {
+    form.append(key, value)
+  }
   const header = new Headers({
-    'Content-Type': 'application/json',
-    Authorization: token,
+    Authorization: `Bearer ${token}`,
   });
   const products = await fetch(`http://localhost:3001/product`, {
     method: 'POST',
     headers: header,
-    body: JSON.stringify({
-      name: 'Cafetera',
-    }),
+    body: form
   })
     .then(res => res.json())
     .catch(err => console.error(err));
+  return products
+}
+export async function getCategories() {
+  const categories = await fetch(`http://localhost:3001/categories`)
+    .then(res => res.json())
+    .catch(err => console.error(err));
 
-  return products;
+  return categories;
 }
