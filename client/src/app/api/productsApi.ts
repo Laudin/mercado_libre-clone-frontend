@@ -32,17 +32,25 @@ export async function getProductsByCategory(category: string, token: any) {
   return products;
 }
 export async function setNewProduct(product: Product, token: any) {
-  const form = new FormData()
+  const formData = new FormData()
   for (const [key, value] of Object.entries(product)) {
-    form.append(key, value)
+    if (!(key === 'photos')) {
+      formData.append(key, value)
+    } else {
+      for (let i = 0; i < value.length; i++) {
+        formData.append(key, value.item(i), value.item(i).name)
+      }
+      
+    }
   }
+  console.log({id: product.sellerId, name: product.sellerName, email: product.sellerEmail})
   const header = new Headers({
     Authorization: `Bearer ${token}`,
   });
   const products = await fetch(`http://localhost:3001/product`, {
     method: 'POST',
     headers: header,
-    body: form
+    body: formData
   })
     .then(res => res.json())
     .catch(err => console.error(err));

@@ -29,7 +29,7 @@ export const reducer = (state, action) => {
 }
 
 export const initialState: User = {
-  id: localStorage.getItem('name') as string,
+  id: localStorage.getItem('id') as string,
   name: localStorage.getItem('name') as string,
   email: localStorage.getItem('email') as string
 }

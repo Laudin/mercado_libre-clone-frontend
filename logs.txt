@@ -24,4 +24,4 @@ day 7 - Had to update react-router because the boilerplate usess an older versio
 day 8 - Populate the form with useForm register and error for every section of the form.
 day 9 - Connected the Form page to the API endpoint so now I can create products. It's secured with wjt.
 day 10 - yarn add @testing-library/react @testing-library/jest-dom @types/jest @types/react-test-renderer @types/testing-library__jest-dom jest-styled-components react-test-renderer --save-dev
-	Started building tests with Jest
+	Started building some tests with Jest

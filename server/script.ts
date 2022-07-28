@@ -39,7 +39,6 @@ export async function getProductListByName(name: string) {
    return products
 }
 export async function createProduct(product: any, photos: any) {
-   console.log(photos)
    const products = await prisma.product.create({
       data: {
          name: product.name,
@@ -57,20 +56,11 @@ export async function createProduct(product: any, photos: any) {
                },
             },
          },
-         photos: 'photos',
+         photos: photos,
          price: parseFloat(product.price),
          description: product.description,
          seller: {
-            connectOrCreate: {
-               where: {
-                  email: product.seller.email
-               },
-               create: {
-                  name: product.seller.name,
-                  email: product.seller.email,
-                  password: '1234'
-               },
-            },
+            connect: { id: product.sellerId },
          },
       },
       include: {
@@ -89,14 +79,22 @@ export async function getProductListByCategory(name: string) {
    return products
 }
 async function main() {
-   //console.log(await prisma.product.deleteMany({}))
+   //console.log(await prisma.user.deleteMany({}))
    console.log(await prisma.product.findMany({}))
-   /* const query = await prisma.user.create({ 
-   data: {
-      name: 'Genos',
-      email: 'sabriimaidanaa1@gmail.com',
-      password: '1234'
-   } }) */
+   /*    await prisma.user.create({
+         data: {
+            name: 'Genos',
+            email: 'sabriimaidanaa1@gmail.com',
+            password: '741963'
+         }
+      })
+      await prisma.user.create({
+         data: {
+            name: 'Morph',
+            email: 'gastonlaudin@gmail.com',
+            password: '1234'
+         }
+      }) */
    /* const query = await prisma.product.create({
       data: {
          name: 'Cafetera',

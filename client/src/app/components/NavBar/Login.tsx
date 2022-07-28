@@ -39,20 +39,22 @@ export function Login(props) {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    api.loginUser(user.email, user.password).then((res: any) => {
-      //console.log(res);
-      if (res) {
-        if (res.error) {
-          setError(true);
-        } else {
-          const {id, name, email} = res.data
-          const action = { type: 'set_user', id: id, name: name, email: email}
-          dispatch(action, {})
-          setError(false);
-          setToken(res.data.token);
+    api.loginUser(user.email, user.password)
+      .then((res: any) => {
+        //console.log(res);
+        if (res) {
+          if (res.error) {
+            setError(true);
+          } else {
+            const { id, name, email } = res.data
+            const action = { type: 'set_user', id: id, name: name, email: email }
+            dispatch(action, {})
+            setError(false);
+            setToken(res.data.token);
+          }
         }
-      }
-    });
+      })
+      .catch(err => console.log(err))
   };
   const showRegister = () => {
     setReg(true);
@@ -105,10 +107,10 @@ export function Login(props) {
           />
         </>
       )}
-      {!reg ? 
-      <Button type="submit" onClick={handleSubmit}>Continuar1</Button> 
-      : 
-      <Button type="submit" onClick={handleRegister}>Continuar2</Button>
+      {!reg ?
+        <Button type="submit" onClick={handleSubmit}>Continuar1</Button>
+        :
+        <Button type="submit" onClick={handleRegister}>Continuar2</Button>
       }
       {!reg && <a href="#" onClick={showRegister}>Register</a>}
     </Form>

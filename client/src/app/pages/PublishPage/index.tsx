@@ -30,6 +30,7 @@ export function PublishPage(props) {
       'Servicios',
    ]
    const { token } = useToken()
+   const [images, setImages] = React.useState<any>([])
    const { currentUser } = React.useContext(UserContext)
    const { register,
       handleSubmit,
@@ -51,32 +52,51 @@ export function PublishPage(props) {
          description: '',
          state: '',
          photos: [''],
-         seller: currentUser
+         sellerId: currentUser.id,
+         sellerName: currentUser.name,
+         sellerEmail: currentUser.email,
       }
    })
 
    const onSubmit = async data => {
       setNewProduct(data, token).then(res => console.log(res))
    }
+   const handleImg = (e) => {
+      setValue("photos", e.target.files)
+      clearErrors("photos")
+      const src: any = []
+      for (let i = 0; i < e.target.files.length; i++) {
+         src.push(URL.createObjectURL(new File([e.target.files.item(i)], 'photo', { type: "image" })))
+      }
+      setImages(images => [...images, ...src])
+   }
+   const deleteImg = (e, i) => {
+      const input = document.getElementById('fileInput') as HTMLInputElement
+      input.value = ''
+      setValue("photos", [])
+      setImages([])
+   }
    const nextStep = (e, target) => {
       //check if any of the fields are empty
       const test = target.values.reduce((previousValue, currentValue) => !!previousValue && !!currentValue, true)
       if (!test) {
          target.values.forEach((item, i) => {
-            if (!item) {
-               //set error on a single empty field
+            if (!item) {   //set error on a single empty field
                setError(target.keys[i], { type: "custom", message: `${target.keys[i]} error` })
-            } else {
-               //clear the rest of the fields that are OK
+            } else { //clear the rest of the fields that are OK
                clearErrors(target.keys[i])
             }
          })
          return
-      } else {
-         //clear all errors of the section
+      } else { //clear all errors of the section
          clearErrors(target.keys)
       }
-
+      if (target.keys[0] === 'photos' && !images.length) {
+         setError(target.keys[0], { type: "custom", message: `${target.keys[0]} error` })
+         return
+      } else {
+         clearErrors(target.keys)
+      }
       //make the next section visible and scroll to it
       const next = parseInt(e.target.parentElement.id) + 1
       const element = document.getElementById(`${next}`)
@@ -120,7 +140,7 @@ export function PublishPage(props) {
                   </p>
 
                   {errors.category ? <Err>{`${errors.category.message}`}</Err> : <Err></Err>}
-                  <Select {...register('category')} >
+                  <Select {...register('category', { required: true })} >
                      <option value="">--Seleccione una categoría--</option>
                      {categories.map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
                   </Select>
@@ -133,14 +153,14 @@ export function PublishPage(props) {
                   <Label>Marca</Label>
 
                   {errors.brand ? <Err>{`${errors.brand.message}`}</Err> : <Err></Err>}
-                  <Input {...register('brand')} />
+                  <Input {...register('brand', { required: true })} />
 
                   <Label>Modelo</Label>
                   <p>Si no tienes el modelo de tu producto presiona N/A</p>
 
                   {errors.model ? <Err>{`${errors.model.message}`}</Err> : <Err></Err>}
                   <Container>
-                     <Input id="modelInput" {...register('model')} />
+                     <Input id="modelInput" {...register('model', { required: true })} />
                      <label>N/A</label>
                      <Input type="checkbox"
                         id="checkbox"
@@ -155,7 +175,7 @@ export function PublishPage(props) {
                               setValue("model", "")
                            }
                         }}
-                        {...register('model')} value="N/A" />
+                        {...register('model', { required: true })} value="N/A" />
                   </Container>
                   <Next type="button"
                      onClick={event => nextStep(event, { keys: ['brand', 'model'], values: getValues(['brand', 'model']) })}
@@ -168,11 +188,11 @@ export function PublishPage(props) {
                   {errors.state ? <Err>{`${errors.state.message}`}</Err> : <Err></Err>}
                   <Container>
                      <label>Usado</label>
-                     <Input type="radio" {...register('state')} value="Usado" />
+                     <Input type="radio" {...register('state', { required: true })} value="Usado" />
                   </Container>
                   <Container>
                      <label>Nuevo</label>
-                     <Input type="radio" {...register('state')} value="Nuevo" />
+                     <Input type="radio" {...register('state', { required: true })} value="Nuevo" />
                   </Container>
                   <Next type="button"
                      onClick={event => nextStep(event, { keys: ['state'], values: getValues(['state']) })}
@@ -184,8 +204,11 @@ export function PublishPage(props) {
                   <p>La primera foto será la portada. Es aconsejable que tenga un fondo blanco. <a href="#">¿Cómo sacar una buena foto de tu producto?</a></p>
 
                   {errors.photos ? <Err>{`${errors.photos.message}`}</Err> : <Err></Err>}
-                  <Input type="file" {...register('photos')}></Input>
-                  <div><img src="" /></div>
+                  {/* <Input id="fileInput" type="file" {...register('photos', { required: true })}></Input> */}
+                  <FileInput id="fileInput" type="file" onChange={handleImg} multiple></FileInput>
+                  <ImageContainer>
+                     {images?.map((img, i) => <Image key={i} src={img} onClick={(e) => deleteImg(e, i)} />)}
+                  </ImageContainer>
                   <Next type="button"
                      onClick={event => nextStep(event, { keys: ['photos'], values: getValues(['photos']) })}
                   >Siguiente</Next>
@@ -196,7 +219,7 @@ export function PublishPage(props) {
 
                   {errors.price ? <Err>{`${errors.price.message}`}</Err> : <Err></Err>}
                   <Container>
-                     <label>$</label><Input type="number" step={0.01} min={0} placeholder="0.00" {...register('price')}></Input>
+                     <label>$</label><Input type="number" step={0.01} min={0} placeholder="0.00" {...register('price', { required: true })}></Input>
                   </Container>
                   <Next type="button"
                      onClick={event => nextStep(event, { keys: ['price'], values: getValues(['price']) })}
@@ -207,7 +230,7 @@ export function PublishPage(props) {
                   <Label>Cuál es el stock de tu producto?</Label>
 
                   {errors.stock ? <Err>{`${errors.stock.message}`}</Err> : <Err></Err>}
-                  <Input type="number" {...register('stock')} min={0} ></Input>
+                  <Input type="number" {...register('stock', { required: true })} min={0} ></Input>
                   <Next type="button"
                      onClick={event => nextStep(event, { keys: ['stock'], values: getValues(['stock']) })}
                   >Siguiente</Next>
@@ -321,6 +344,50 @@ const Input = styled.input`
       border-color: red;
    }
 `;
+const FileInput = styled.input`
+   color: transparent;
+   width: 100%;
+   height: 35px;
+   margin-bottom: 30px;
+   outline: none;
+   border: none;
+   border-bottom: 1px solid #3786ff;
+   &::-webkit-file-upload-button {
+      visibility: hidden;
+   }
+   &::before {
+      color: black;
+      content: 'Select some files';
+      display: inline-block;
+      background: linear-gradient(top, #f9f9f9, #e3e3e3);
+      padding: 5px 8px;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      cursor: pointer;
+      text-shadow: 1px 1px #fff;
+   }
+   &:hover::before {
+      border-color: black;
+   }
+   &:active::before {
+      background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+   }
+   &:invalid {
+      border-color: red;
+   }
+`;
+const ImageContainer = styled.div`
+   display: flex;
+   flex-wrap: wrap;
+   width: 90%;
+`
+const Image = styled.img`
+   object-fit: contain;
+   width: 30%;
+   margin: 5px;
+   padding: 5px;
+   border: 1px solid lightgray;
+`
 const Next = styled.button`
    margin-top: 20px;
    width: 100px;

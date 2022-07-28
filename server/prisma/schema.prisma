@@ -17,6 +17,8 @@ model User {
   password   String
   selling    Product[] @relation("seller")
   favProduct Product[] @relation("favorite")
+
+  @@unique([id, email])
 }
 
 model Product {

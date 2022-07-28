@@ -13,7 +13,9 @@ export interface Product{
   state: string,
   createdAt?: Date,
   photos: string[]
-  seller: User,
+  sellerId: string,
+  sellerName: string,
+  sellerEmail: string,
 }
 
 export interface User {

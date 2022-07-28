@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { createRenderer } from 'react-test-renderer/shallow';
-import renderer from 'react-test-renderer'
 import { fireEvent, render, screen } from '@testing-library/react'
 import 'jest-styled-components'
 
