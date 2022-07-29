@@ -20,7 +20,7 @@ export function Nav(props) {
     'Belleza y Ciudado Personal',
   ];
   const categoriesList: JSX.Element[] = categories.map((item, i) => (
-    <MyLink key={i} to={item}>{item}</MyLink>
+    <MyLink key={i} to={`/c/${item}`}>{item}</MyLink>
   ));
 
   React.useEffect(() => {
@@ -37,8 +37,8 @@ export function Nav(props) {
         </Category>
         <MyLink to={'#'}>Ofertas</MyLink>
         <MyLink to={'#'}>Historial</MyLink>
-        <MyLink to={'/supermercado'}>Supermercado</MyLink>
-        <MyLink to={'Moda'}>Moda</MyLink>
+        <MyLink to={'/c/supermercado'}>Supermercado</MyLink>
+        <MyLink to={'#'}>Moda</MyLink>
         <MyLink to={'/publish'}>Vender</MyLink>
         <MyLink to={'#'}>Ayuda</MyLink>
       </NavBar>

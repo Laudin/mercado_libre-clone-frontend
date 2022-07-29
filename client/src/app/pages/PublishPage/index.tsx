@@ -273,7 +273,7 @@ const Section = styled.div`
    margin: 20px 0;
    padding: 20px;
    & textarea {
-      border: 1px solid #3786ff;
+      border: 1px solid var(--blue);
       margin: 30px 0;
    }
 `;
@@ -316,7 +316,7 @@ const Select = styled.select`
    //appearance: none; //the arrow thingy
    border: none;
    padding: 15px;
-   border-bottom: 1px solid #3786ff;
+   border-bottom: 1px solid var(--blue);
    outline: none;
    &::-ms-expand { //the arrow thingy for other versions
       display: none;
@@ -339,7 +339,7 @@ const Input = styled.input`
    margin-bottom: 30px;
    outline: none;
    border: none;
-   border-bottom: 1px solid #3786ff;
+   border-bottom: 1px solid var(--blue);
    &:invalid {
       border-color: red;
    }
@@ -351,7 +351,7 @@ const FileInput = styled.input`
    margin-bottom: 30px;
    outline: none;
    border: none;
-   border-bottom: 1px solid #3786ff;
+   border-bottom: 1px solid var(--blue);
    &::-webkit-file-upload-button {
       visibility: hidden;
    }
@@ -392,13 +392,13 @@ const Next = styled.button`
    margin-top: 20px;
    width: 100px;
    align-self: flex-end;
-   border: 2px solid #3786ff;
+   border: 2px solid var(--blue);
    padding: 12px 8px;
-   color: #3786ff;
+   color: var(--blue);
    background: white;
    border-radius: 5px;
    &:hover {
       color: white;
-      background: #3786ff;
+      background: var(--blue);
    }
 `;

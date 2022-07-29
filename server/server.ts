@@ -6,6 +6,7 @@ import {
    getProductListByName,
    getProductListByCategory,
    createProduct,
+   getProductById,
 } from './script'
 const { v4: uuidv4 } = require('uuid');
 const path = require('path')
@@ -118,8 +119,7 @@ app.post('/user', async (req: Request, res: Response) => {
       )
    }
 })
-app.get('/product', authenticateUser, async (req: Request, res: Response, next: CallableFunction) => {
-   console.log(req.headers.user)
+app.get('/product', async (req: Request, res: Response, next: CallableFunction) => {
    const { name } = req.query
    const products = await getProductListByName(name as string)
    res.status(200).json({
@@ -129,13 +129,19 @@ app.get('/product', authenticateUser, async (req: Request, res: Response, next: 
       }
    })
 })
+app.get('/product/:id', async (req: Request, res: Response, next: CallableFunction) => {
+   const id = req.params.id
+   const product = await getProductById(id)
+   res.status(200).json(
+      product
+   )
+})
 app.post('/product', authenticateUser, upload.array('photos'), async (req: any, res: Response, next: CallableFunction) => {
    //console.log(req.files)
    //console.log(req.body)
    res.status(200).json(
       await createProduct(req.body, req.files.map((file: any) => file.path))
    )
-   //res.sendFile(filePath)
 })
 
 app.get('/category', authenticateUser, async (req: Request, res: Response, next: CallableFunction) => {
@@ -155,5 +161,5 @@ app.get('/static/:id', async (req: Request, res: Response, next: CallableFunctio
    res.sendFile(`static/${req.params.id}`, options)
 })
 app.listen(port, () => {
-   console.log(`Example app listening on port ${port}`)
+   console.log(`Server listening on port ${port}`)
 })

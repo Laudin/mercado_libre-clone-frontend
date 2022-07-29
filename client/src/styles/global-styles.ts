@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  :root {
+    --blue: #3786ff;
+  }
   html,
   body {
     height: 100%;

@@ -22,19 +22,24 @@ export async function createUser(name: string, email: string, password: string) 
    return user
 }
 export async function getProductById(id: string) {
-   const products = await prisma.product.findUnique({
+   const product = await prisma.product.findUnique({
       where: {
          id: id
       },
    })
-   return products
+   return product
 }
 export async function getProductListByName(name: string) {
+   if (!name) return []
    const products = await prisma.product.findMany({
       where: {
          name: { contains: name }
       },
-      take: 2, //return only 2
+      select: {
+         id: true,
+         name: true,
+      },
+      take: 6, //return only 6
    })
    return products
 }
@@ -80,7 +85,17 @@ export async function getProductListByCategory(name: string) {
 }
 async function main() {
    //console.log(await prisma.user.deleteMany({}))
-   console.log(await prisma.product.findMany({}))
+   //console.log(await prisma.product.findMany({}))
+   /* console.log(await prisma.product.findMany({
+      where: {
+         name: { contains: '' }
+      },
+      select: {
+         id: true,
+         name: true,
+      },
+      take: 6, //return only 6
+   })) */
    /*    await prisma.user.create({
          data: {
             name: 'Genos',

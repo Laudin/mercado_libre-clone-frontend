@@ -36,13 +36,13 @@ export function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/publish" element={<PublishPage />} />
-          <Route path=":category" element={<ProductListPage />} />
-          <Route path=":category/:id" element={<ProductPage />} />
+          <Route path="/c/:category" element={<ProductListPage />} />
+          <Route path=":id" element={<ProductPage />} />
           <Route element={<NotFoundPage />} />
         </Routes>
       </UserProvider>
       <GlobalStyle />
-      
+
     </BrowserRouter>
   );
 }
