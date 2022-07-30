@@ -11,22 +11,22 @@ export function HomePage() {
         <title>HomePage</title>
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
-      <Container>
+      <Wrapper>
         <Slider />
-        <ContentWrapper>
-          <Content>
-            <ProductsList />
-          </Content>
-        </ContentWrapper>
-      </Container>
+        <Content>
+          <Headline>Supermercado</Headline>
+          <ProductsList category="Supermercado" />
+        </Content>
+      </Wrapper>
     </>
   );
 }
 
-const ContentWrapper = styled.div``;
-const Content = styled.div`
-  width: 1000px;
-  margin: auto;
-  height: 200vh;
+const Wrapper = styled.div``;
+const Headline = styled.h2`
+  margin: 30px 0 0 10px;
 `;
-const Container = styled.div``;
+const Content = styled.div`
+  width: 1240px;
+  margin: auto;
+`;

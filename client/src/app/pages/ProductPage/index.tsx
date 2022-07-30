@@ -8,29 +8,44 @@ import { Product } from '../../../types'
 
 export function ProductPage(props) {
 
-  const [product, setProduct] = React.useState<any>(null)
-  const location = useLocation()
+   const [product, setProduct] = React.useState<any>(null)
+   const location = useLocation()
 
-  React.useEffect(() => {
-    getProductsById(location.pathname.slice(1)).then(res => setProduct(res))
-  }, [])
+   React.useEffect(() => {
+      getProductsById(location.pathname.slice(1)).then(res => setProduct(res))
+   }, [])
 
-  return (
-    <>
-      <Helmet>
-        <title>HomePage</title>
-        <meta name="description" content="A Boilerplate application homepage" />
-      </Helmet>
-      <Wrapper>
-        {!product ? null :
-          <div>{product?.name}</div>
-        }
-      </Wrapper>
-    </>
-  );
+   return (
+      <>
+         <Helmet>
+            <title>HomePage</title>
+            <meta name="description" content="A Boilerplate application homepage" />
+         </Helmet>
+         <Wrapper>
+            <Show>
+               <Image></Image>
+               <Info></Info>
+               <Characteristics></Characteristics>
+            </Show>
+         </Wrapper>
+      </>
+   );
 }
 
 const Wrapper = styled.div`
+   width: 1240px;
+   margin: auto;
+`;
+const Show = styled.section`
+   background: white;
+`;
+const Image = styled.div`
+   width: 75%;
+`;
+const Info = styled.div`
+   width: 25%;
+`;
+const Characteristics = styled.div`
 
 `;
 

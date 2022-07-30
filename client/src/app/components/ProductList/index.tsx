@@ -9,17 +9,13 @@ export function ProductList(props) {
   const { token, setToken } = useToken();
 
   React.useEffect(() => {
-    console.log('calling api..');
-    console.log(token);
-    productApi.getProductsByCategory('Electrodomésticos', token).then(res => {
-      console.log(res);
-      if (res.error) {
-        //
-      } else {
+    productApi.getProductsByCategory('Supermercado')
+      .then(res => {
+        console.log(res);
         setProducts(res.data.products);
-      }
-    });
-  }, [props]);
+      })
+      .catch((err) => console.log(err))
+  }, []);
 
   const mappingProduct =
     products &&
@@ -28,12 +24,12 @@ export function ProductList(props) {
         <ElemWrapper key={i}>
           <Elem>
             <Favorite><a>{'<3'}</a></Favorite>
-            <Img src='https://http2.mlstatic.com/D_NQ_NP_984740-MLA41433583964_042020-O.webp'></Img>
+            <Img src={product.photos[0]}></Img>
             <Info>
-               <Name>{product.name}</Name>
-               <Price>${product.price}</Price>
-               <Created>Mes: {new Date(product.createdAt).getMonth()}</Created>
-               <Description>{product.description}</Description>
+              <Name>{product.name}</Name>
+              <Price>${product.price}</Price>
+              <Created>Mes: {new Date(product.createdAt).getMonth()}</Created>
+              <Description>{product.description}</Description>
             </Info>
           </Elem>
         </ElemWrapper>
@@ -45,11 +41,11 @@ export function ProductList(props) {
   }
 
   return (
-      <Container>
-        <ContentWrapper>
-          <Content>{mappingProduct}</Content>
-        </ContentWrapper>
-      </Container>
+    <Container>
+      <ContentWrapper>
+        <Content>{mappingProduct}</Content>
+      </ContentWrapper>
+    </Container>
   );
 }
 

@@ -77,7 +77,7 @@ export async function createProduct(product: any, photos: any) {
 export async function getProductListByCategory(name: string) {
    const products = await prisma.product.findMany({
       where: {
-         categoryName: 'Electrodomésticos'
+         categoryName: name
       },
       take: 20, //return only 2
    })

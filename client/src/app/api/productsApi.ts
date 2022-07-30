@@ -1,35 +1,21 @@
 import { Product } from '../../types'
 
 export async function getProductsByName(name: string) {
-   const products = await fetch(`http://localhost:3001/product?name=${name}`, {
-      method: 'GET',
-   })
+   const products = await fetch(`http://localhost:3001/product?name=${name}`)
       .then(res => res.json())
       .catch(err => console.error(err));
 
    return products.data.products;
 }
 export async function getProductsById(id: string) {
-   const products = await fetch(`http://localhost:3001/product/${id}`, {
-      method: 'GET',
-   })
+   const products = await fetch(`http://localhost:3001/product/${id}`)
       .then(res => res.json())
       .catch(err => console.error(err));
 
    return products;
 }
-export async function getProductsByCategory(category: string, token: any) {
-   const header = new Headers({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-   });
-   const products = await fetch(
-      `http://localhost:3001/category?name=${category}`,
-      {
-         method: 'GET',
-         headers: header,
-      },
-   )
+export async function getProductsByCategory(category: string) {
+   const products = await fetch(`http://localhost:3001/category?name=${category}`)
       .then(res => res.json())
       .catch(err => console.error(err));
 

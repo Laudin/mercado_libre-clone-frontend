@@ -144,14 +144,12 @@ app.post('/product', authenticateUser, upload.array('photos'), async (req: any, 
    )
 })
 
-app.get('/category', authenticateUser, async (req: Request, res: Response, next: CallableFunction) => {
+app.get('/category', async (req: Request, res: Response, next: CallableFunction) => {
    const { name } = req.query
    const products = await getProductListByCategory(name as string)
+   console.log(products)
    res.status(200).json({
-      succes: true,
-      data: {
-         products: products
-      }
+      products: products
    })
 })
 app.get('/static/:id', async (req: Request, res: Response, next: CallableFunction) => {
