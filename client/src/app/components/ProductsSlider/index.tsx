@@ -22,10 +22,8 @@ export function ProductsList({ category }) {
       return (
          <ElemWrapper key={i}>
             <Elem to={product.id}>
-               <Favorite><a>{'<3'}</a></Favorite>
                <Img src={'http://localhost:3001/' + product.photos[0]}></Img>
                <Info>
-                  {/* <Name>{}</Name> */}
                   <Price>${product.price}</Price>
                   <Created>{product.state}</Created>
                   <Description>{product.name}</Description>
@@ -116,21 +114,6 @@ const ElemWrapper = styled.div`
       width: 50%;
    }
 `;
-const Favorite = styled.div`
-   position: absolute;
-   opacity: 0;
-   border-radius: 50%;
-   right: 0px;
-   text-align: center;
-   width: 30px;
-   height: 30px;
-   background: lightgray;
-   transition: opacity .1s;
-   & * {
-      color: blue;
-      line-height: 29px;
-   }
-`;
 const Img = styled.img`
    min-height: 200px;
    padding: 35px 0px;
@@ -171,7 +154,7 @@ const Elem = styled(Link)`
     height: 320px;
     box-shadow: 0px 0px 10px 5px lightgray;
   }
-  &:hover ${Description}, &:hover ${Favorite}{
+  &:hover ${Description} {
     opacity: 1;
   }
 `;

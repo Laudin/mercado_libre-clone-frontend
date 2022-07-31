@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
+import { Link } from 'react-router-dom'
 import { Login } from './Login';
 import { UserContext } from '../../context/User';
 import useToken from '../../hooks/useToken'
@@ -41,15 +42,18 @@ export function User() {
 
   return (
     <Wrapper>
-      {currentUser.name ? <Link onClick={handleLogout}>Cerrar Sesion</Link> : <Link onClick={createAccount}>Crear cuenta</Link>}
-      <Link onClick={handleLogin}>{currentUser.name ? currentUser.name : 'Ingresar'}</Link>
+      {currentUser.name ?
+        <LinkElem onClick={handleLogout}>Cerrar Sesion</LinkElem>
+        : <LinkElem onClick={createAccount}>Crear cuenta</LinkElem>
+      }
+      <LinkElem onClick={handleLogin}>{currentUser.name ? currentUser.name : 'Ingresar'}</LinkElem>
       {login && (
         <LoginWrapper ref={ref}>
           <Login fade={fade} />
         </LoginWrapper>
       )}
-      <Link>Mis Compras</Link>
-      <Link>Carrito</Link>
+      <LinkElem>Mis Compras</LinkElem>
+      <MyLink to={"/cart"}>Carrito</MyLink>
     </Wrapper>
   );
 }
@@ -60,7 +64,12 @@ const Wrapper = styled.div`
   gap: 10px;
   list-style: none;
 `;
-const Link = styled.a`
+const MyLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+`;
+const LinkElem = styled.a`
   color: black;
   text-decoration: none;
   cursor: pointer;

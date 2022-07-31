@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
 import { useLocation } from 'react-router-dom'
 import useToken from '../../hooks/useToken';
+import useCart from '../../hooks/useCart';
 import { getProductsById } from '../../api/productsApi';
 import { Product } from '../../../types'
 
@@ -11,6 +12,8 @@ export function ProductPage(props) {
    const [product, setProduct] = React.useState<any>(null)
    const [mainImage, setMainImage] = React.useState<any>(null)
    const [cant, setCant] = React.useState<any>(1)
+   const { cart, setCart } = useCart()
+   const { token, setToken } = useToken()
    const ref = React.useRef<any>(null)
    const location = useLocation()
 
@@ -20,7 +23,7 @@ export function ProductPage(props) {
          setMainImage('http://localhost:3001/' + res.photos[0])
       })
    }, [])
-   React.useEffect(() => {
+   React.useEffect(() => {  // To show the zoom of the img on the side
       const callback = (e) => {
          //if img parent (who camptures the event) === the box parent (the Container)
          if (e.target.parentNode === ref.current.parentNode) {
@@ -63,6 +66,9 @@ export function ProductPage(props) {
       const closeup = document.getElementById('closeup') as any
       closeup.style.display = 'none'
    }
+   const handleCart = () => {
+      setCart({ ids: [...cart.ids, product.id] })
+   }
 
    return (
       <>
@@ -86,7 +92,6 @@ export function ProductPage(props) {
 
                </GalleryWrapper>
                <InfoWrapper>
-                  <Favorite><a>{'<3'}</a></Favorite>
                   <p>{product.state}</p>
                   <h2>{product.name}</h2>
                   <h2>${product.price}</h2>
@@ -97,7 +102,7 @@ export function ProductPage(props) {
                      : 'Último disponible!'}
                   </div>
                   <Buy>Comprar</Buy>
-                  <Addcart>Agregar al Carrito</Addcart>
+                  <Addcart onClick={handleCart}>Agregar al Carrito</Addcart>
                </InfoWrapper>
             </Show>
             <Characteristics></Characteristics>
@@ -182,20 +187,6 @@ const InfoWrapper = styled.div`
    padding: 15px;
    border: 1px solid lightgray;
    border-radius: 15px;
-`;
-const Favorite = styled.div`
-   position: absolute;
-   border-radius: 50%;
-   right: 0px;
-   text-align: center;
-   width: 30px;
-   height: 30px;
-   background: lightgray;
-   transition: opacity .1s;
-   & * {
-      color: blue;
-      line-height: 29px;
-   }
 `;
 const Buy = styled.button`
    display: block;

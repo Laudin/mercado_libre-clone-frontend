@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { connect } from 'http2'
 const prisma = new PrismaClient()
 
 export async function getUser(email: string, password: string) {
@@ -9,7 +10,6 @@ export async function getUser(email: string, password: string) {
    })
    return user
 }
-
 export async function createUser(name: string, email: string, password: string) {
    await prisma.user.deleteMany()
    const user = await prisma.user.create({

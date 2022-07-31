@@ -1,22 +1,28 @@
 import { useState } from 'react';
 
 export default function useCart() {
-  const getToken = () => {
-    const tokenString = localStorage.getItem('token');
-    //const userToken = JSON.stringify(tokenString as string); //pff alpedo
-    //console.log(tokenString);
-    return tokenString;
-  };
+   const getCart = () => {
+      const cartString = localStorage.getItem('cart');
+      console.log('cartString', cartString)
+      const cartJSON = cartString ? JSON.parse(cartString as string) : { ids: [] };
+      return cartJSON;
+   };
 
-  const [token, setToken] = useState(getToken());
+   const [cart, setCart] = useState(getCart());
 
-  const saveToken = userToken => {
-    localStorage.setItem('token', userToken);
-    setToken(userToken.token);
-  };
+   const saveCart = userCart => {
+      console.log('saveCart', userCart)
+      if (!userCart) {
+         localStorage.setItem('cart', '{"ids": []}');
+         setCart('');
+         return
+      }
+      localStorage.setItem('cart', JSON.stringify(userCart));
+      setCart(userCart);
+   };
 
-  return {
-    setToken: saveToken,
-    token,
-  };
+   return {
+      setCart: saveCart,
+      cart: getCart(),
+   };
 }

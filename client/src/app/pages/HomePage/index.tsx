@@ -8,8 +8,8 @@ export function HomePage() {
   return (
     <>
       <Helmet>
-        <title>HomePage</title>
-        <meta name="description" content="A Boilerplate application homepage" />
+        <title>Mercado Libre</title>
+        <meta name="" content="" />
       </Helmet>
       <Wrapper>
         <Slider />

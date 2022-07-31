@@ -12,7 +12,7 @@ export default function useToken() {
 
   const saveToken = userToken => {
     if (!userToken) {
-      localStorage.clear();
+      localStorage.setItem('token', '');
       setToken('');
       return
     }

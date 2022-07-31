@@ -16,6 +16,7 @@ import { HomePage } from './pages/HomePage/Loadable';
 import { ProductListPage } from './pages/ProductListPage/Loadable';
 import { ProductPage } from './pages/ProductPage/Loadable';
 import { PublishPage } from './pages/PublishPage/Loadable'
+import { CartPage } from './pages/CartPage/Loadable'
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 import { UserProvider } from './context/User'
@@ -36,6 +37,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/publish" element={<PublishPage />} />
+          <Route path="/cart" element={<CartPage />} />
           <Route path="/c/:category" element={<ProductListPage />} />
           <Route path=":id" element={<ProductPage />} />
           <Route element={<NotFoundPage />} />

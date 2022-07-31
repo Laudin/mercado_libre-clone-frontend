@@ -23,7 +23,6 @@ export function ProductList(props) {
       return (
         <ElemWrapper key={i}>
           <Elem>
-            <Favorite><a>{'<3'}</a></Favorite>
             <Img src={product.photos[0]}></Img>
             <Info>
               <Name>{product.name}</Name>
@@ -72,21 +71,6 @@ const ElemWrapper = styled.div`
     width: 50%;
   }
 `;
-const Favorite = styled.div`
-  position: absolute;
-  opacity: 0;
-  border-radius: 50%;
-  right: 0px;
-  text-align: center;
-  width: 30px;
-  height: 30px;
-  background: lightgray;
-  transition: opacity .1s;
-  & * {
-      color: blue;
-      line-height: 29px;
-  }
-`;
 const Img = styled.img`
   width: 100%;
 `;
@@ -127,7 +111,7 @@ const Elem = styled.div`
     height: 270px;
     box-shadow: 0px 0px 10px 5px lightgray;
   }
-  &:hover ${Description}, &:hover ${Favorite}{
+  &:hover ${Description} {
     opacity: 1;
   }
 `;
