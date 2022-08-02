@@ -10,7 +10,7 @@ export function CartPage() {
    const [list, setList] = React.useState<any | null>()
 
    React.useEffect(() => {
-      console.log(cart)
+      window.scrollTo(0, 0)
       const apiCalls = cart.ids.map(item => getProductsById(item))
       Promise.all(apiCalls).then(res => setList(res as any)).catch(err => console.log(err))
 

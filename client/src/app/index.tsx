@@ -13,7 +13,8 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { GlobalStyle } from 'styles/global-styles';
 import { NavBar } from './components/NavBar';
 import { HomePage } from './pages/HomePage/Loadable';
-import { ProductListPage } from './pages/ProductListPage/Loadable';
+import { CategoryPage } from './pages/CategoryPage/Loadable';
+import { SearchPage } from './pages/SearchPage/Loadable';
 import { ProductPage } from './pages/ProductPage/Loadable';
 import { PublishPage } from './pages/PublishPage/Loadable'
 import { CartPage } from './pages/CartPage/Loadable'
@@ -38,8 +39,9 @@ export function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/publish" element={<PublishPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/c/:category" element={<ProductListPage />} />
-          <Route path=":id" element={<ProductPage />} />
+          <Route path="/search/:query" element={<SearchPage />} />
+          <Route path="/c/:category" element={<CategoryPage />} />
+          <Route path="/:id" element={<ProductPage />} />
           <Route element={<NotFoundPage />} />
         </Routes>
       </UserProvider>

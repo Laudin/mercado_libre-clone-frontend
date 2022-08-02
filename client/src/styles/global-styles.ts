@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
+  @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;500&family=Lato:wght@300;700&family=Poppins:wght@300;500&display=swap');
+  
   :root {
     --blue: #3786ff;
   }
@@ -9,12 +12,11 @@ export const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     width: 100%;
+    font-family: 'Lato', sans-serif;
     color: #333333;
   }
 
   body {
-    @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;500&display=swap');
-    font-family: 'Catamaran', sans-serif;
     font-size: 0.9rem;
     background: #ebebeb;
   }
@@ -30,7 +32,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: inherit;
+    color: #333333;
     text-decoration: none;
   }
 `;

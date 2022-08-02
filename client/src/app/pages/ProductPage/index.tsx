@@ -18,11 +18,12 @@ export function ProductPage(props) {
    const location = useLocation()
 
    React.useEffect(() => {
+      window.scrollTo(0, 0)
       getProductsById(location.pathname.slice(1)).then(res => {
          setProduct(res)
          setMainImage('http://localhost:3001/' + res.photos[0])
       })
-   }, [])
+   }, [useLocation().pathname]) //when the location changes fetch everything again
    React.useEffect(() => {  // To show the zoom of the img on the side
       const callback = (e) => {
          //if img parent (who camptures the event) === the box parent (the Container)
@@ -164,8 +165,8 @@ const Box = styled.div`
    height: 240px;
    background: #333333;
    opacity: 0.5;
-   top: 0px;
-   left: 0px;
+   top: -1000px;
+   left: -10000px;
    transform: translate(-50%, -50%);
    z-index: 10;
    cursor: zoom-in;

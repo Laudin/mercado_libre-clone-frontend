@@ -53,11 +53,23 @@ export function ProductsList({ category }) {
 
    return (
       <Wrapper>
-         <ButtonLeft onClick={decreseSlide}>left</ButtonLeft>
+         <ButtonLeft onClick={decreseSlide}>
+            <svg x="0px" y="0px" viewBox="0 0 330 330" width='20px' height='24px'>
+               <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
+               c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393
+               s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/>
+            </svg>
+         </ButtonLeft>
          <Slide ref={slide}>
             {productsList}
          </Slide>
-         <ButtonRigth onClick={increseSlide}>rigth</ButtonRigth>
+         <ButtonRigth onClick={increseSlide}>
+            <svg x="0px" y="0px" viewBox="0 0 330 330" width='52px' height='24px'>
+               <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
+               c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393
+               s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/>
+            </svg>
+         </ButtonRigth>
       </Wrapper>
    )
 }
@@ -65,28 +77,62 @@ export function ProductsList({ category }) {
 const ButtonLeft = styled.div`
    visibility: hidden;
    height: 60px;
-   width:30px;
+   width:60px;
    background: white;
-   border-top-right-radius: 10px;
-   border-bottom-right-radius: 10px;
+   border-radius: 50%;
    position: absolute;
    left: 0px;
    top: 50%;
    transform: translateY(-50%);
    z-index: 98;
+   box-shadow: 0 7px 16px 0 rgb(0 0 0 / 20%);
+   transition: all .5s;
+   &:hover {
+      box-shadow: 0 7px 16px 0 rgb(0 0 0 / 50%)
+   }
+   & svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    overflow: visible;
+      & path {
+         color: var(--blue);
+         transform: translate(290px,-20px) rotate(90deg);
+      }
+   }
 `;
 const ButtonRigth = styled.div`
    visibility: hidden;
    height: 60px;
-   width:30px;
+   width:60px;
    background: white;
-   border-top-left-radius: 10px;
-   border-bottom-left-radius: 10px;
+   border-radius: 50%;
    position: absolute;
    right: 0px;
    top: 50%;
    transform: translateY(-50%);
    z-index: 98;
+   box-shadow: 0 7px 16px 0 rgb(0 0 0 / 20%);
+   transition: all .5s;
+   &:hover {
+      box-shadow: 0 7px 16px 0 rgb(0 0 0 / 50%)
+   }
+   & svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    overflow: visible;
+      & path {
+         color: var(--blue);
+         transform: translate(40px,300px) rotate(-90deg);
+      }
+   }
 `;
 const Wrapper = styled.div`
    position: relative;

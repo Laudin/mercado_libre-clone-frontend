@@ -7,6 +7,13 @@ export async function getProductsByName(name: string) {
 
    return products.data.products;
 }
+export async function getProductsList(name: string) {
+   const products = await fetch(`http://localhost:3001/products_list?name=${name}`)
+      .then(res => res.json())
+      .catch(err => console.error(err));
+
+   return products.data.products;
+}
 export async function getProductsById(id: string) {
    const products = await fetch(`http://localhost:3001/product/${id}`)
       .then(res => res.json())
