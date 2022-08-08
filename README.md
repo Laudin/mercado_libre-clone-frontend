@@ -2,6 +2,10 @@
 
 This repository is a basic clone of [Mercado Libre](https://www.mercadolibre.com.ar/)
 
+`cd client`, `npm i`, `yarn start`
+
+`cd server`, `npm i`, `npm run start`
+
 ## Requeriments and Goals of the System
 
 ##### Functional Requeriments
