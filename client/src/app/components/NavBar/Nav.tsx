@@ -82,7 +82,7 @@ const CategoryWrapper = styled.ul`
    position: absolute;
    display: flex;
    flex-direction: column;
-   background: lightgray;
+   background: #333333;
    border-radius: 5px;
    width: 200px;
    margin: 5px;
@@ -92,10 +92,11 @@ const CategoryWrapper = styled.ul`
    z-index: 99;
    transition: all 0.3s;
    & ${MyLink} {
+      color: white;
       padding: 10px;
       border-radius: 5px;
       &:hover {
-         background: lightskyblue;
+         background: var(--blue);
       }
    }
    &:before {

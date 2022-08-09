@@ -16,7 +16,6 @@ export function Search() {
   }, [input])
 
   React.useEffect(() => {
-
     const clickCallback = (e: Event) => {
       if (e.target !== ref.current) {
         rsltContainertainer.current.style.display = 'none'
@@ -32,7 +31,8 @@ export function Search() {
     rsltContainertainer.current.style.display = 'none'
     ref.current.blur()
     rsltContainertainer.current.blur()
-    navigate(`/search/${input}`, { state: { query: input } })
+    if (input) navigate(`/search/${input}`, { state: { query: input } })
+
   }
   const handleFocus = (e) => {
     const elem = document.getElementById('resultContainer')

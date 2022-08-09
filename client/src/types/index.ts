@@ -2,7 +2,7 @@ import { RootState } from './RootState';
 
 export type { RootState };
 
-export interface Product{
+export interface Product {
   name: string,
   category: string[] | string,
   brand: string,
@@ -19,7 +19,8 @@ export interface Product{
 }
 
 export interface User {
-  id: string,
+  id?: string,
   name: string,
-  email: string
+  email: string,
+  password?: string
 }

@@ -40,13 +40,11 @@ export async function setNewProduct(product: Product, token: any) {
 
       }
    }
-   console.log({ id: product.sellerId, name: product.sellerName, email: product.sellerEmail })
-   const header = new Headers({
-      Authorization: `Bearer ${token}`,
-   });
+
    const products = await fetch(`http://localhost:3001/product`, {
       method: 'POST',
-      headers: header,
+      mode: 'cors',
+      credentials: 'include',
       body: formData
    })
       .then(res => res.json())

@@ -28,3 +28,10 @@ day 10 - yarn add @testing-library/react @testing-library/jest-dom @types/jest @
 day 11 - Improved the file management, started working in the Product Page, specialy the zoom img function.
 day 12 - Finished the Product Page and the zoom product img.
 	Started working in the Cart and the favorite function. Deleted the favorite function.
+day 13 - Making the query result page. Struggling with the filter function
+day 14 - Done some funtionalities of the filter, its not complete but is working.
+day 15 - Took a break to concentrate on my Portfolio.
+	Had an idea to add pagination to the Result page. Something like Infinite Scrolling. (see https://levelup.gitconnected.com/creating-a-data-pagination-function-in-postgresql-2a032084af54)
+day 16 - Installed cookie-parser in the server. Now the System works with cookies, had to configre cors.
+
+

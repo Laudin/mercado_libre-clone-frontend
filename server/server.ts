@@ -1,13 +1,15 @@
 import express, { Request, Response } from 'express'
-import { pathToFileURL } from 'url';
 import {
    getUser,
+   getUserById,
    createUser,
+   getProductListForSearch,
    getProductListByName,
    getProductListByCategory,
    createProduct,
    getProductById,
 } from './script'
+const cookieParser = require('cookie-parser')
 const { v4: uuidv4 } = require('uuid');
 const path = require('path')
 const multer = require('multer')
@@ -39,22 +41,30 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const app = express()
 const port = 3001
+const secret = 'jwt_secret'
 
-app.use(cors())
+app.use(cors({
+   origin: 'http://localhost:3000',
+   credentials: true,
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser('Cookie_Secret'))
 
 
-function authenticateUser(req: Request, res: Response, next: CallableFunction) {
-   const authHeader = req.headers.authorization
-   const token = authHeader && authHeader.split(' ')[1]
+function authorizeUser(req: Request, res: Response, next: CallableFunction) {
+   const token = req.cookies.token
+
+   console.log("token: ", req.cookies.token)
 
    if (!token) {
       return res.status(200).send({ error: { message: 'Unauthorize' } })   //401 = Unauthorize
    }
 
-   jwt.verify(token, "secretkeyappearshere", (err: any, user: any) => {
+   jwt.verify(token, secret, (err: any, user: any) => {
       if (err) return res.status(200).send({ error: { message: 'Forbidden' } }) //403 = Forbidden
+
+      console.log(user)
 
       req.headers.user = user   //creates new prop user but cant directly in req because of type restrictions
 
@@ -67,8 +77,8 @@ app.get('/', (req: Request, res: Response) => {
       "Time": new Date().toISOString()
    })
 })
-app.get('/user', async (req: Request, res: Response, next: CallableFunction) => {
-   const { email, password } = req.query
+app.post('/login', async (req: Request, res: Response, next: CallableFunction) => {
+   const { email, password } = req.body
    try {
       if (!(email && password)) {
          //400 = Bad req
@@ -85,20 +95,20 @@ app.get('/user', async (req: Request, res: Response, next: CallableFunction) => 
             token = jwt.sign(
                { userId: user.id, email: user.email },
                "secretkeyappearshere",
-               //{ expiresIn: "1h" } never
+               { expiresIn: "168h" } // 1 week
             );
          } catch (err) {
             console.error(err);
-            const error = new Error("Error! Something went wrong.");
+            const error = new Error("Error! Something went wrong creating the token.");
             return next(error);
          }
+         res.cookie('token', token, { maxAge: 30 * 24 * 60 * 60 }) // attach the cookie to the res
          res.status(200).json({
             success: true,
             data: {
                id: user.id,
                name: user.name,
                email: user.email,
-               token: token
             }
          })
       }
@@ -107,6 +117,11 @@ app.get('/user', async (req: Request, res: Response, next: CallableFunction) => 
       const error = new Error("Error! Something went wrong.");
       return next(error);
    }
+})
+app.get('/user', authorizeUser, async (req: Request, res: Response, next: CallableFunction) => {
+   const { userId } = req.query
+   return await getUserById(userId as string)
+   //should also return all the products that the user is selling
 })
 app.post('/user', async (req: Request, res: Response) => {
    const { name, email, password } = req.body
@@ -119,7 +134,18 @@ app.post('/user', async (req: Request, res: Response) => {
       )
    }
 })
+
 app.get('/product', async (req: Request, res: Response, next: CallableFunction) => {
+   const { name } = req.query
+   const products = await getProductListForSearch(name as string)
+   res.status(200).json({
+      succes: true,
+      data: {
+         products: products
+      }
+   })
+})
+app.get('/products_list', async (req: Request, res: Response, next: CallableFunction) => {
    const { name } = req.query
    const products = await getProductListByName(name as string)
    res.status(200).json({
@@ -136,7 +162,7 @@ app.get('/product/:id', async (req: Request, res: Response, next: CallableFuncti
       product
    )
 })
-app.post('/product', authenticateUser, upload.array('photos'), async (req: any, res: Response, next: CallableFunction) => {
+app.post('/product', authorizeUser, upload.array('photos'), async (req: any, res: Response, next: CallableFunction) => {
    //console.log(req.files)
    //console.log(req.body)
    res.status(200).json(
@@ -147,7 +173,6 @@ app.post('/product', authenticateUser, upload.array('photos'), async (req: any, 
 app.get('/category', async (req: Request, res: Response, next: CallableFunction) => {
    const { name } = req.query
    const products = await getProductListByCategory(name as string)
-   console.log(products)
    res.status(200).json({
       products: products
    })

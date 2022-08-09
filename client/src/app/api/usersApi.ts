@@ -1,25 +1,25 @@
-import { getProductsById } from "./productsApi";
+import { User } from '../../types/index'
 
-interface token {
-   token: string;
-}
-interface user {
-   name: string;
-   email: string;
-   password: string;
-}
 
-export async function loginUser(username: string, password: string) {
-   const userQuery: token | null = await fetch(
-      `http://localhost:3001/user?email=${username}&password=${password}`,
-   )
+export async function loginUser(email: string, password: string) {
+   const requestOptions: RequestInit = {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+         email: email,
+         password: password
+      }),
+   };
+   const userQuery = await fetch(`http://localhost:3001/login`, requestOptions)
       .then(res => res.json())
       .catch(err => console.error(err));
 
    return userQuery ? userQuery : null;
 }
 
-export async function registerUser({ ...user }: user) {
+export async function registerUser({ ...user }: User) {
    const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -36,3 +36,14 @@ export async function registerUser({ ...user }: user) {
    return userQuery;
 }
 
+export async function getUserById(id: String) {
+   const requestOptions: RequestInit = {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+   };
+   return await fetch(`http://localhost:3001/user?userId=${id}`, requestOptions)
+      .then(res => res.json())
+      .catch(err => console.error(err));
+}

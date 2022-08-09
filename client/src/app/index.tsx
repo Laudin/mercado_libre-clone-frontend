@@ -13,6 +13,8 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { GlobalStyle } from 'styles/global-styles';
 import { NavBar } from './components/NavBar';
 import { HomePage } from './pages/HomePage/Loadable';
+import { UserPage } from './pages/UserPage/Loadable';
+import { LoginPage } from './pages/LoginPage/Loadable';
 import { CategoryPage } from './pages/CategoryPage/Loadable';
 import { SearchPage } from './pages/SearchPage/Loadable';
 import { ProductPage } from './pages/ProductPage/Loadable';
@@ -37,6 +39,8 @@ export function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/publish" element={<PublishPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/search/:query" element={<SearchPage />} />

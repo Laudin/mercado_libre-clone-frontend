@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client'
-import { connect } from 'http2'
 const prisma = new PrismaClient()
 
 export async function getUser(email: string, password: string) {
@@ -9,6 +8,15 @@ export async function getUser(email: string, password: string) {
       }
    })
    return user
+}
+export async function getUserById(id: string) {
+   const user = await prisma.user.findFirst({
+      where: {
+         AND: [{ id: id }]
+      }
+   })
+   return user
+   // should also return all the products that the user is selling
 }
 export async function createUser(name: string, email: string, password: string) {
    await prisma.user.deleteMany()
@@ -29,17 +37,33 @@ export async function getProductById(id: string) {
    })
    return product
 }
-export async function getProductListByName(name: string) {
+export async function getProductListForSearch(name: string) {
    if (!name) return []
    const products = await prisma.product.findMany({
       where: {
-         name: { contains: name }
+         name: {
+            contains: name,
+            mode: 'insensitive',
+         },
       },
       select: {
          id: true,
          name: true,
       },
       take: 6, //return only 6
+   })
+   return products
+}
+export async function getProductListByName(name: string) {
+   if (!name) return []
+   const products = await prisma.product.findMany({
+      where: {
+         name: {
+            contains: name,
+            mode: 'insensitive',
+         },
+      },
+      take: 20, //return only 6
    })
    return products
 }

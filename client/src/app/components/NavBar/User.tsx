@@ -1,53 +1,31 @@
 import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom'
-import { Login } from './Login';
 import { UserContext } from '../../context/User';
 import useToken from '../../hooks/useToken'
 import useCart from '../../hooks/useCart'
 
 export function User() {
-   const [login, setLogin] = React.useState<boolean>(false);
-   const [fade, setFade] = React.useState<boolean>(false);
+
    const { setToken } = useToken()
    const { cart } = useCart()
    const { currentUser, dispatch } = React.useContext(UserContext);
 
    const ref = React.useRef(null);
 
-   const handleLogin = () => {
-      setFade(false);
-      setLogin(login => !login);
-   };
    const handleLogout = () => {
       dispatch({ type: 'clear_user' }, {})
       setToken('')
    }
-   const createAccount = () => {
-      setFade(false);
-      setLogin(login => !login);
-   }
 
-   React.useEffect(() => {
-      /* console.log('currentUser: ')
-      console.log(currentUser) */
-      const callback = e => {
-         if (e.target === ref.current) {
-            setFade(fade => true);
-            setTimeout(() => setLogin(login => !login), 301);
-         }
-      };
-      document.addEventListener('click', callback);
-
-      return () => document.removeEventListener('click', callback);
-   }, []);
 
    return (
       <Wrapper>
-         {currentUser.name ?
-            <LinkElem onClick={handleLogout}>Cerrar Sesion</LinkElem>
-            : <LinkElem onClick={createAccount}>Crear cuenta</LinkElem>
+         {!currentUser.name ?
+            <LinkElem >Crear cuenta</LinkElem>
+            : null
          }
+         <div>{currentUser.id}</div>
          <div>{currentUser.name ?
             <UserElem><Icon src='http://localhost:3001/static/user.png'></Icon>
                {currentUser.name}
@@ -58,20 +36,19 @@ export function User() {
                </svg>
                <UserDropdownWrapper>
                   <UserDropdown>
-                     <div>{currentUser.name}</div>
+                     <UserName>Hola {currentUser.name}!</UserName>
                      <UserLink to={`/user/${currentUser.id}`}>Mi perfíl</UserLink>
                      <UserLink to={`/publish`}>Vender</UserLink>
-                     <div onClick={handleLogout}>Salir</div>
+                     <Logout onClick={handleLogout}>Salir</Logout>
                   </UserDropdown>
                </UserDropdownWrapper>
             </UserElem>
             : <MyLink to={'/login'}>Iniciar sesión</MyLink>}
          </div>
-         {login && (
-            <LoginWrapper ref={ref}>
-               <Login fade={fade} />
-            </LoginWrapper>
-         )}
+         {currentUser.name ?
+            <LinkElem >Mis compras</LinkElem>
+            : null
+         }
          <LinkElem>Mis Compras</LinkElem>
          <MyLink to={"/cart"}><span>{cart.ids.length}</span><Icon src='http://localhost:3001/static/cart.png'></Icon></MyLink>
       </Wrapper>
@@ -100,6 +77,7 @@ const Icon = styled.img`
 const UserDropdownWrapper = styled.div`
    position: absolute;
    background: white;
+   width: 200px;
    border-radius: 5px;
    margin-top: 5px;
    visibility: hidden;
@@ -109,7 +87,7 @@ const UserDropdownWrapper = styled.div`
       content: "";
       position: absolute;
       top: -5px;
-      right: 81px;
+      right: 113px;
       background: inherit;
       width: 10px;
       height: 10px;
@@ -119,10 +97,24 @@ const UserDropdownWrapper = styled.div`
 const UserDropdown = styled.div`
    display: flex;
    flex-direction: column;
-   padding: 20px;
+   margin: 20px 0;
+`;
+const UserName = styled.div`
+   padding: 0px 20px 5px 20px;
+   border-bottom: 1px solid #e8e8e8;
+`;
+const Logout = styled.div`
+   cursor: pointer;
+   padding: 10px 20px;
+   &:hover {
+      background: var(--blue)
+   }
 `;
 const UserLink = styled(Link)`
-   
+   padding: 10px 20px;
+   &:hover {
+      background: var(--blue)
+   }
 `;
 const UserElem = styled.div`
    position: relative;
