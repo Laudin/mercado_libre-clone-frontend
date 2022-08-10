@@ -6,8 +6,6 @@ import { Product } from '../../../types'
 import { useForm } from 'react-hook-form'
 import { UserContext } from '../../context/User';
 import { setNewProduct } from '../../api/productsApi'
-import useToken from '../../hooks/useToken'
-
 export function PublishPage(props) {
    const categories = [
       'Vehículos',
@@ -29,7 +27,6 @@ export function PublishPage(props) {
       'Productos Sustentables',
       'Servicios',
    ]
-   const { token } = useToken()
    const [images, setImages] = React.useState<any>([])
    const { currentUser } = React.useContext(UserContext)
    const { register,
@@ -59,7 +56,7 @@ export function PublishPage(props) {
    })
 
    const onSubmit = async data => {
-      setNewProduct(data, token).then(res => console.log(res))
+      setNewProduct(data).then(res => console.log(res))
    }
    const handleImg = (e) => {
       setValue("photos", e.target.files)
@@ -205,7 +202,7 @@ export function PublishPage(props) {
 
                   {errors.photos ? <Err>{`${errors.photos.message}`}</Err> : <Err></Err>}
                   {/* <Input id="fileInput" type="file" {...register('photos', { required: true })}></Input> */}
-                  <FileInput id="fileInput" type="file" onChange={handleImg} multiple></FileInput>
+                  <FileInput id="fileInput" type="file" accept="image/png, image/jpeg" onChange={handleImg} multiple></FileInput>
                   <ImageContainer>
                      {images?.map((img, i) => <Image key={i} src={img} onClick={(e) => deleteImg(e, i)} />)}
                   </ImageContainer>

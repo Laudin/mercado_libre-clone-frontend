@@ -33,5 +33,7 @@ day 14 - Done some funtionalities of the filter, its not complete but is working
 day 15 - Took a break to concentrate on my Portfolio.
 	Had an idea to add pagination to the Result page. Something like Infinite Scrolling. (see https://levelup.gitconnected.com/creating-a-data-pagination-function-in-postgresql-2a032084af54)
 day 16 - Installed cookie-parser in the server. Now the System works with cookies, had to configre cors.
+day 17 - Added Cart server api. Now using CartContext insted of CustomHook, but don't know how to initialize the
+	cart since it's located at the server.
 
 

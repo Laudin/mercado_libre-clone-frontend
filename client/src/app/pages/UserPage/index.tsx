@@ -1,9 +1,7 @@
-import { current } from '@reduxjs/toolkit';
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
 import { UserContext } from '../../context/User';
-import useToken from '../../hooks/useToken'
 import { getUserById } from '../../api/usersApi'
 import { User } from '../../../types/index'
 

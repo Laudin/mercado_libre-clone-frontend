@@ -2,20 +2,16 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/User';
-import useToken from '../../hooks/useToken'
-import useCart from '../../hooks/useCart'
+import { CartContext } from '../../context/Cart';
+
 
 export function User() {
 
-   const { setToken } = useToken()
-   const { cart } = useCart()
-   const { currentUser, dispatch } = React.useContext(UserContext);
-
-   const ref = React.useRef(null);
+   const { currentUser, dispatchUser } = React.useContext(UserContext);
+   const { cart, dispatchCart } = React.useContext(CartContext);
 
    const handleLogout = () => {
-      dispatch({ type: 'clear_user' }, {})
-      setToken('')
+      dispatchUser({}, { type: 'clear_user', id: '', name: '', email: '' })
    }
 
 
@@ -50,7 +46,7 @@ export function User() {
             : null
          }
          <LinkElem>Mis Compras</LinkElem>
-         <MyLink to={"/cart"}><span>{cart.ids.length}</span><Icon src='http://localhost:3001/static/cart.png'></Icon></MyLink>
+         <MyLink to={"/cart"}><span>{cart.length}</span><Icon src='http://localhost:3001/static/cart.png'></Icon></MyLink>
       </Wrapper>
    );
 }

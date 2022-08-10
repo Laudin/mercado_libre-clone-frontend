@@ -1,6 +1,6 @@
 import { User } from '../../../types'
 
-export const reducer = (state, action) => {
+export const reducer = (state, action: { type: string, id: string, name: string, email: string }) => {
   switch (action.type) {
     case "set_user":
       //localStorage.setItem('id', action.id)

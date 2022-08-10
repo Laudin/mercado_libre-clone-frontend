@@ -47,3 +47,31 @@ export async function getUserById(id: String) {
       .then(res => res.json())
       .catch(err => console.error(err));
 }
+
+export async function getCart(): Promise<string[]> {
+   const requestOptions: RequestInit = {
+      method: 'GET',
+      mode: 'cors',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+   };
+   return await fetch(`http://localhost:3001/cart`, requestOptions)
+      .then(res => res.json())
+      //.then( if unathorized redirect )
+      .catch(err => console.log(err))
+}
+export async function addCart(productId: string) {
+   const requestOptions: RequestInit = {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+         productId: productId
+      }),
+   };
+   return await fetch(`http://localhost:3001/cart`, requestOptions)
+      .then(res => res.json())
+      //.then( if unathorized redirect )
+      .catch(err => console.log(err))
+}
