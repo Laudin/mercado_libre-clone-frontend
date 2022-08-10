@@ -1,9 +1,7 @@
-import { current } from '@reduxjs/toolkit';
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
 import { UserContext } from '../../context/User';
-import useToken from '../../hooks/useToken'
 import { loginUser, registerUser } from '../../api/usersApi';
 import { User } from '../../../types/index'
 
@@ -16,8 +14,7 @@ export function LoginPage() {
     password: ''
   });
 
-  const { token, setToken } = useToken();
-  const { currentUser, dispatch } = React.useContext(UserContext);
+  const { currentUser, dispatchUser } = React.useContext(UserContext);
 
   const [reg, setReg] = React.useState(false);
   const [error, setError] = React.useState(false);
@@ -51,9 +48,8 @@ export function LoginPage() {
           } else {
             const { id, name, email } = res.data
             const action = { type: 'set_user', id: id, name: name, email: email }
-            dispatch(action, {})
+            dispatchUser({}, action)
             setError(false);
-            setToken(res.data.token);
           }
         }
       })

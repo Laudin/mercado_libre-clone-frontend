@@ -48,7 +48,7 @@ export async function addCart(userId: string, productId: string) {
 export async function getCart(userId: string, cartList: string[]) {
    let cartQuery
    if (userId) {
-      const { cart } = await prisma.user.findUnique({
+      const cart = await prisma.user.findUnique({
          where: {
             id: userId,
          },
@@ -58,7 +58,7 @@ export async function getCart(userId: string, cartList: string[]) {
       })
       cartQuery = await prisma.product.findMany({
          where: {
-            id: { in: cart },
+            id: { in: cart ? cart.cart : [] },
          },
       })
 

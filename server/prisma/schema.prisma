@@ -16,6 +16,7 @@ model User {
   email    String    @unique
   password String
   selling  Product[] @relation("seller")
+  cart     String[]
 
   @@unique([id, email])
 }

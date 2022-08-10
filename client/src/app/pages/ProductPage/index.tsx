@@ -2,18 +2,17 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
 import { useLocation } from 'react-router-dom'
-import useToken from '../../hooks/useToken';
-import useCart from '../../hooks/useCart';
 import { getProductsById } from '../../api/productsApi';
+import { CartContext } from '../../context/Cart';
 import { Product } from '../../../types'
 
 export function ProductPage(props) {
 
+   const { cart, dispatchCart } = React.useContext(CartContext);
+
    const [product, setProduct] = React.useState<any>(null)
    const [mainImage, setMainImage] = React.useState<any>(null)
    const [cant, setCant] = React.useState<any>(1)
-   const { cart, setCart } = useCart()
-   const { token, setToken } = useToken()
    const ref = React.useRef<any>(null)
    const location = useLocation()
 
@@ -68,7 +67,7 @@ export function ProductPage(props) {
       closeup.style.display = 'none'
    }
    const handleCart = () => {
-      setCart({ ids: [...cart.ids, product.id] })
+      dispatchCart({}, { type: "set_cart", product: product.id })
    }
 
    return (
