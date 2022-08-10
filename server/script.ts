@@ -29,6 +29,49 @@ export async function createUser(name: string, email: string, password: string) 
    })
    return user
 }
+export async function addCart(userId: string, productId: string) {
+   const { cart } = await prisma.user.update({
+      where: {
+         id: userId,
+      },
+      select: {
+         cart: true,
+      },
+      data: {
+         cart: {
+            push: productId,
+         }
+      }
+   })
+   return await getCart('', cart)
+}
+export async function getCart(userId: string, cartList: string[]) {
+   let cartQuery
+   if (userId) {
+      const { cart } = await prisma.user.findUnique({
+         where: {
+            id: userId,
+         },
+         select: {
+            cart: true,
+         },
+      })
+      cartQuery = await prisma.product.findMany({
+         where: {
+            id: { in: cart },
+         },
+      })
+
+   } else {
+      cartQuery = await prisma.product.findMany({
+         where: {
+            id: { in: cartList },
+         },
+      })
+
+   }
+   return cartQuery
+}
 export async function getProductById(id: string) {
    const product = await prisma.product.findUnique({
       where: {

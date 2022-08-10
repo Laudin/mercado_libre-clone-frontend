@@ -1,14 +1,5 @@
 import express, { Request, Response } from 'express'
-import {
-   getUser,
-   getUserById,
-   createUser,
-   getProductListForSearch,
-   getProductListByName,
-   getProductListByCategory,
-   createProduct,
-   getProductById,
-} from './script'
+import * as db from './script'
 const cookieParser = require('cookie-parser')
 const { v4: uuidv4 } = require('uuid');
 const path = require('path')
@@ -84,7 +75,7 @@ app.post('/login', async (req: Request, res: Response, next: CallableFunction) =
          //400 = Bad req
          res.status(200).send({ error: { message: 'Please provide full credentials' } })
       } else {
-         const user = await getUser(email as string, password as string)
+         const user = await db.getUser(email as string, password as string)
          if (!user) {
             res.status(200).json({ error: { message: 'Unauthorize' } })
             return
@@ -120,7 +111,7 @@ app.post('/login', async (req: Request, res: Response, next: CallableFunction) =
 })
 app.get('/user', authorizeUser, async (req: Request, res: Response, next: CallableFunction) => {
    const { userId } = req.query
-   return await getUserById(userId as string)
+   return await db.getUserById(userId as string)
    //should also return all the products that the user is selling
 })
 app.post('/user', async (req: Request, res: Response) => {
@@ -130,14 +121,32 @@ app.post('/user', async (req: Request, res: Response) => {
       res.status(200).send({ error: { message: 'Please provide full credentials' } })
    } else {
       res.status(200).json(
-         await createUser(name as string, email as string, password as string)
+         await db.createUser(name as string, email as string, password as string)
       )
    }
 })
 
+app.get('/cart', authorizeUser, async (req: Request, res: Response, next: CallableFunction) => {
+   const id = req.cookies.id
+   if (!id) return []
+   const cart = await db.getCart(id, [])
+   res.status(200).json({
+      cart: cart
+   })
+})
+app.post('/cart', authorizeUser, async (req: Request, res: Response, next: CallableFunction) => {
+   const id = req.cookies.id
+   const product = req.query.id as string // _localhost/cart?id=*
+   if (!id && !product) res.status(400).send({ error: { message: 'Empty info' } })
+   const cart = await db.addCart(id, product)
+   res.status(200).json({
+      cart: cart
+   })
+})
+
 app.get('/product', async (req: Request, res: Response, next: CallableFunction) => {
    const { name } = req.query
-   const products = await getProductListForSearch(name as string)
+   const products = await db.getProductListForSearch(name as string)
    res.status(200).json({
       succes: true,
       data: {
@@ -147,7 +156,7 @@ app.get('/product', async (req: Request, res: Response, next: CallableFunction) 
 })
 app.get('/products_list', async (req: Request, res: Response, next: CallableFunction) => {
    const { name } = req.query
-   const products = await getProductListByName(name as string)
+   const products = await db.getProductListByName(name as string)
    res.status(200).json({
       succes: true,
       data: {
@@ -157,7 +166,7 @@ app.get('/products_list', async (req: Request, res: Response, next: CallableFunc
 })
 app.get('/product/:id', async (req: Request, res: Response, next: CallableFunction) => {
    const id = req.params.id
-   const product = await getProductById(id)
+   const product = await db.getProductById(id)
    res.status(200).json(
       product
    )
@@ -166,13 +175,13 @@ app.post('/product', authorizeUser, upload.array('photos'), async (req: any, res
    //console.log(req.files)
    //console.log(req.body)
    res.status(200).json(
-      await createProduct(req.body, req.files.map((file: any) => file.path))
+      await db.createProduct(req.body, req.files.map((file: any) => file.path))
    )
 })
 
 app.get('/category', async (req: Request, res: Response, next: CallableFunction) => {
    const { name } = req.query
-   const products = await getProductListByCategory(name as string)
+   const products = await db.getProductListByCategory(name as string)
    res.status(200).json({
       products: products
    })
