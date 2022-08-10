@@ -136,7 +136,7 @@ app.get('/cart', authorizeUser, async (req: Request, res: Response, next: Callab
 })
 app.post('/cart', authorizeUser, async (req: Request, res: Response, next: CallableFunction) => {
    const id = req.cookies.id
-   const product = req.body.productId as string // _localhost/cart?id=*
+   const product = req.query.id as string // _localhost/cart?id=*
    if (!id && !product) res.status(400).send({ error: { message: 'Empty info' } })
    const cart = await db.addCart(id, product)
    res.status(200).json({

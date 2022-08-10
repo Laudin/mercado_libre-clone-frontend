@@ -3,15 +3,15 @@ import { reducer, initialState } from './reducer'
 
 export const UserContext = React.createContext({
   currentUser: initialState,
-  dispatchUser: reducer
+  dispatch: reducer
 })
 
 export const UserProvider = ({ children }) => {
-
-  const [currentUser, dispatchUser] = React.useReducer(reducer, initialState);
-
+  
+  const [currentUser, dispatch] = React.useReducer(reducer, initialState);
+  
   return (
-    <UserContext.Provider value={{ currentUser, dispatchUser }}>
+    <UserContext.Provider value={{currentUser, dispatch}}>
       {children}
     </UserContext.Provider>
   )

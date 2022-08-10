@@ -23,7 +23,6 @@ import { CartPage } from './pages/CartPage/Loadable'
 import { NotFoundPage } from './pages/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
 import { UserProvider } from './context/User'
-import { CartProvider } from './context/Cart'
 
 export function App() {
   const { i18n } = useTranslation();
@@ -37,20 +36,18 @@ export function App() {
         <meta name="description" content="A React Boilerplate application" />
       </Helmet>
       <UserProvider>
-        <CartProvider>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/user/:id" element={<UserPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/publish" element={<PublishPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/search/:query" element={<SearchPage />} />
-            <Route path="/c/:category" element={<CategoryPage />} />
-            <Route path="/:id" element={<ProductPage />} />
-            <Route element={<NotFoundPage />} />
-          </Routes>
-        </CartProvider>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/publish" element={<PublishPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/search/:query" element={<SearchPage />} />
+          <Route path="/c/:category" element={<CategoryPage />} />
+          <Route path="/:id" element={<ProductPage />} />
+          <Route element={<NotFoundPage />} />
+        </Routes>
       </UserProvider>
       <GlobalStyle />
 

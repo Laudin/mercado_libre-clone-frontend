@@ -1,19 +1,15 @@
-import { current } from '@reduxjs/toolkit';
 import * as React from 'react';
-import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
+import * as api from '../../api/usersApi';
+import useToken from '../../hooks/useToken';
 import { UserContext } from '../../context/User';
-import useToken from '../../hooks/useToken'
-import { loginUser, registerUser } from '../../api/usersApi';
-import { User } from '../../../types/index'
 
-export function LoginPage() {
+export function LoginPage(props) {
 
-  const [user, setUser] = React.useState<User>({
-    id: '',
-    email: '',
+  const [user, setUser] = React.useState({ //should implement a reducer for this
     name: '',
-    password: ''
+    email: '',
+    password: '',
   });
 
   const { token, setToken } = useToken();
@@ -43,8 +39,9 @@ export function LoginPage() {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    loginUser(user.email, user.password ? user.password : '')
+    api.loginUser(user.email, user.password)
       .then((res: any) => {
+        //console.log(res);
         if (res) {
           if (res.error) {
             setError(true);
@@ -64,68 +61,61 @@ export function LoginPage() {
   };
   const handleRegister = e => {
     e.preventDefault();
-    registerUser({ ...user });
+    api.registerUser({ ...user });
   };
 
+  React.useEffect(() => {
+    if (ref.current !== null) {
+      if (props.fade) {
+        ref.current.style.opacity = '0';
+      } else {
+        ref.current.style.opacity = '1';
+      }
+    }
+    return;
+  }, [props.fade]);
+
   return (
-    <>
-      <Helmet>
-        <title>Login</title>
-        <meta name="" content="" />
-      </Helmet>
-      <Wrapper>
-        <Form ref={ref}>
-          <h1>Login</h1>
-          {error && <Error>Credenciales erroneas</Error>}
-          <Label>Email</Label>
+    <Form ref={ref}>
+      <h1>Login</h1>
+      {error && <Error>Credenciales erroneas</Error>}
+      <Label>Email</Label>
+      <Input
+        type="text"
+        id="email"
+        name="email"
+        value={user.email}
+        onChange={handleEmail}
+      />
+      <Label>Password</Label>
+      <Input
+        type="text"
+        id="password"
+        name="password"
+        value={user.password}
+        onChange={handlePassword}
+      />
+      {reg && (
+        <>
+          <Label>Name</Label>
           <Input
             type="text"
-            id="email"
-            name="email"
-            value={user.email}
-            onChange={handleEmail}
+            id="name"
+            name="name"
+            value={user.name}
+            onChange={handleName}
           />
-          <Label>Password</Label>
-          <Input
-            type="text"
-            id="password"
-            name="password"
-            value={user.password}
-            onChange={handlePassword}
-          />
-          {reg && (
-            <>
-              <Label>Name</Label>
-              <Input
-                type="text"
-                id="name"
-                name="name"
-                value={user.name}
-                onChange={handleName}
-              />
-            </>
-          )}
-          {!reg ?
-            <Button type="submit" onClick={handleSubmit}>Continuar1</Button>
-            :
-            <Button type="submit" onClick={handleRegister}>Continuar2</Button>
-          }
-          {!reg && <a href="#" onClick={showRegister}>Register</a>}
-        </Form>
-      </Wrapper>
-    </>
+        </>
+      )}
+      {!reg ?
+        <Button type="submit" onClick={handleSubmit}>Continuar1</Button>
+        :
+        <Button type="submit" onClick={handleRegister}>Continuar2</Button>
+      }
+      {!reg && <a href="#" onClick={showRegister}>Register</a>}
+    </Form>
   );
 }
-
-const Wrapper = styled.div`
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   width: 1240px;
-   margin: auto;
-   font-size: 1.2rem;
-`;
-
 const Form = styled.form`
   position: absolute;
   top: 50%;

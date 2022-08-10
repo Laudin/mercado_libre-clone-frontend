@@ -1,24 +1,23 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
-import { CartContext } from '../../context/Cart';
+import useCart from '../../hooks/useCart'
 import { getProductsById } from '../../api/productsApi'
 
 export function CartPage() {
 
-   const { cart, dispatchCart } = React.useContext(CartContext);
+   const { cart, setCart } = useCart()
    const [list, setList] = React.useState<any | null>()
 
    React.useEffect(() => {
       window.scrollTo(0, 0)
-      console.log(cart)
-      //const apiCalls = cart.map(item => getProductsById(item))
-      //Promise.all(apiCalls).then(res => setList(res as any)).catch(err => console.log(err))
+      const apiCalls = cart.ids.map(item => getProductsById(item))
+      Promise.all(apiCalls).then(res => setList(res as any)).catch(err => console.log(err))
 
    }, [])
    const handleDelete = (id: string) => {
-      console.log(cart.filter(item => item !== id))
-      dispatchCart({}, { type: "delete_from_cart", product: '' })
+      console.log(cart.ids.filter(item => item !== id))
+      setCart({ ids: cart.ids.filter(item => item !== id) })
       setList(list.filter(item => item.id !== id))
    }
 
@@ -29,7 +28,7 @@ export function CartPage() {
             <meta name="" content="" />
          </Helmet>
          <Wrapper>
-            {/* <CartContainer>{list ? list.map((product, i) =>
+            <CartContainer>{list ? list.map((product, i) =>
                <ElemWrapper key={i}>
                   <Elem>
                      <Delete onClick={(e) => handleDelete(product.id)}>Eliminar</Delete>
@@ -42,7 +41,7 @@ export function CartPage() {
                </ElemWrapper>)
                : <div>Nada todavía..</div>}
             </CartContainer>
-            <Total>$ {list ? list.reduce((prev, curr) => prev + curr.price, 0) : '0'}</Total> */}
+            <Total>$ {list ? list.reduce((prev, curr) => prev + curr.price, 0) : '0'}</Total>
          </Wrapper>
       </>
    );
