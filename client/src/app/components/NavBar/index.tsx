@@ -7,23 +7,27 @@ import styled from 'styled-components/macro'
 
 export function NavBar() {
 
-   const location = useLocation().pathname === '/publish'
+   const PublisLocation = useLocation().pathname === '/publish'
+   const LoginLocation = useLocation().pathname === '/login'
    return (
       <Wrapper>
-         <Container>
-            {!location && <Search />}
-            <Nav location={location} />
-         </Container>
+         {!LoginLocation && <Container>
+            {!PublisLocation && <Search />}
+            <Nav PublisLocation={PublisLocation} />
+         </Container>}
       </Wrapper>
    )
 }
 
 const Wrapper = styled.div`
    background-color: #fff159;
+   @media (max-width: 1000px) {
+      min-width: 1000px;
+   }
 `
 const Container = styled.div`
    display: flex;
    flex-direction: column;
-   width: 1240px;
+   max-width: 1240px;
    margin: auto;
 `;

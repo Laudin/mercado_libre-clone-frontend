@@ -1,6 +1,7 @@
 import { User } from '../../../types'
 
-export const reducer = (state, action: { type: string, id: string, name: string, email: string }) => {
+export const reducer = (state, action?) => {
+  console.log(action)
   switch (action.type) {
     case "set_user":
       //localStorage.setItem('id', action.id)
@@ -19,7 +20,7 @@ export const reducer = (state, action: { type: string, id: string, name: string,
       localStorage.removeItem('name')
       localStorage.removeItem('email')
 
-      document.cookie = `id=${action.id}; max-age=${0}; Secure` // "kills" the cookie x_x
+      document.cookie = `id=${action.id}; expires=Thu, 01 Jan 1970 00:00:01 GMT"; max-age=${0}; Secure` // "kills" the cookie x_x
       return {
         ...state,
         id: '',

@@ -11,14 +11,13 @@ export function CartPage() {
 
    React.useEffect(() => {
       window.scrollTo(0, 0)
-      console.log(cart)
-      //const apiCalls = cart.map(item => getProductsById(item))
-      //Promise.all(apiCalls).then(res => setList(res as any)).catch(err => console.log(err))
+      const apiCalls = cart.map(item => getProductsById(item))
+      Promise.all(apiCalls).then(res => setList(res as any)).catch(err => console.log(err))
 
    }, [])
    const handleDelete = (id: string) => {
       console.log(cart.filter(item => item !== id))
-      dispatchCart({}, { type: "delete_from_cart", product: '' })
+      dispatchCart({ type: "delete_from_cart", product: '' })
       setList(list.filter(item => item.id !== id))
    }
 
@@ -29,7 +28,7 @@ export function CartPage() {
             <meta name="" content="" />
          </Helmet>
          <Wrapper>
-            {/* <CartContainer>{list ? list.map((product, i) =>
+            <CartContainer>{list ? list.map((product, i) =>
                <ElemWrapper key={i}>
                   <Elem>
                      <Delete onClick={(e) => handleDelete(product.id)}>Eliminar</Delete>
@@ -42,7 +41,7 @@ export function CartPage() {
                </ElemWrapper>)
                : <div>Nada todavía..</div>}
             </CartContainer>
-            <Total>$ {list ? list.reduce((prev, curr) => prev + curr.price, 0) : '0'}</Total> */}
+            <Total>$ {list ? list.reduce((prev, curr) => prev + curr.price, 0) : '0'}</Total>
          </Wrapper>
       </>
    );

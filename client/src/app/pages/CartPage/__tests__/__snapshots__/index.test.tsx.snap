@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<HomePage /> should render 1`] = `
+exports[`<CartPage /> should render 1`] = `
 <React.Fragment>
   <Helmet
     defer={true}
@@ -8,20 +8,23 @@ exports[`<HomePage /> should render 1`] = `
     prioritizeSeoTags={false}
   >
     <title>
-      HomePage
+      Carrito
     </title>
     <meta
-      content="A Boilerplate application homepage"
-      name="description"
+      content=""
+      name=""
     />
   </Helmet>
-  <HomePage__Container>
-    <Slider />
-    <HomePage__ContentWrapper>
-      <HomePage__Content>
-        <ProductsList />
-      </HomePage__Content>
-    </HomePage__ContentWrapper>
-  </HomePage__Container>
+  <CartPage__Wrapper>
+    <CartPage__CartContainer>
+      <div>
+        Nada todavía..
+      </div>
+    </CartPage__CartContainer>
+    <CartPage__Total>
+      $ 
+      0
+    </CartPage__Total>
+  </CartPage__Wrapper>
 </React.Fragment>
 `;

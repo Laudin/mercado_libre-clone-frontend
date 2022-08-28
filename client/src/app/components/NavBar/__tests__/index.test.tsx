@@ -30,11 +30,4 @@ describe('<NavBar />', () => {
       fireEvent.change(inputField, { target: { value: 'a' } })
       expect(inputField).toHaveDisplayValue('a');
    });
-   /*
-   //with redux
-   it('should dispatch action on username change', () => {
-   const input = component.container.querySelector('input');
-   fireEvent.change(input!, { target: { value: 'test' } });
-   expect(store.getState().githubRepoForm.loading).toBe(true);
- }); */
 });

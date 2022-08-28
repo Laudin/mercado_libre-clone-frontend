@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<NavBar /> should render 1`] = `
+exports[`<LoginPage /> should render 1`] = `
 <Router
   location={
     Object {
@@ -34,7 +34,7 @@ exports[`<NavBar /> should render 1`] = `
   }
 >
   <UserProvider>
-    <NavBar />
+    <LoginPage />
   </UserProvider>
 </Router>
 `;

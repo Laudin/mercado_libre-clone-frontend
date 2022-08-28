@@ -11,7 +11,7 @@ export function User() {
    const { cart, dispatchCart } = React.useContext(CartContext);
 
    const handleLogout = () => {
-      dispatchUser({}, { type: 'clear_user', id: '', name: '', email: '' })
+      dispatchUser({ type: 'clear_user', id: '', name: '', email: '' })
    }
 
 
@@ -21,9 +21,8 @@ export function User() {
             <LinkElem >Crear cuenta</LinkElem>
             : null
          }
-         <div>{currentUser.id}</div>
-         <div>{currentUser.name ?
-            <UserElem><Icon src='http://localhost:3001/static/user.png'></Icon>
+         {currentUser.name ?
+            <UserElem data-testid="username"><Icon src='http://localhost:3001/static/user.png'></Icon>
                {currentUser.name}
                <svg x="0px" y="0px" viewBox="0 0 330 330" width='10px' height='12px'>
                   <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
@@ -39,14 +38,14 @@ export function User() {
                   </UserDropdown>
                </UserDropdownWrapper>
             </UserElem>
-            : <MyLink to={'/login'}>Iniciar sesión</MyLink>}
-         </div>
+            : <MyLink to={'/login'} data-testid="iniciar_sesion">Iniciar sesión</MyLink>}
+
          {currentUser.name ?
             <LinkElem >Mis compras</LinkElem>
             : null
          }
          <LinkElem>Mis Compras</LinkElem>
-         <MyLink to={"/cart"}><span>{cart.length}</span><Icon src='http://localhost:3001/static/cart.png'></Icon></MyLink>
+         <MyLink to={"/cart"}><span data-testid="cart-num">{cart.length}</span><Icon src='http://localhost:3001/static/cart.png'></Icon></MyLink>
       </Wrapper>
    );
 }

@@ -20,28 +20,46 @@ exports[`<App /> should render and match the snapshot 1`] = `
     />
   </Helmet>
   <UserProvider>
-    <NavBar />
-    <Routes>
-      <Route
-        element={<Unknown />}
-        path="/"
-      />
-      <Route
-        element={<Unknown />}
-        path="/publish"
-      />
-      <Route
-        element={<Unknown />}
-        path=":category"
-      />
-      <Route
-        element={<Unknown />}
-        path=":category/:id"
-      />
-      <Route
-        element={<Unknown />}
-      />
-    </Routes>
+    <CartProvider>
+      <NavBar />
+      <Routes>
+        <Route
+          element={<Unknown />}
+          path="/"
+        />
+        <Route
+          element={<Unknown />}
+          path="/user/:id"
+        />
+        <Route
+          element={<Unknown />}
+          path="/login"
+        />
+        <Route
+          element={<Unknown />}
+          path="/publish"
+        />
+        <Route
+          element={<Unknown />}
+          path="/cart"
+        />
+        <Route
+          element={<Unknown />}
+          path="/search/:query"
+        />
+        <Route
+          element={<Unknown />}
+          path="/c/:category"
+        />
+        <Route
+          element={<Unknown />}
+          path="/:id"
+        />
+        <Route
+          element={<Unknown />}
+        />
+      </Routes>
+    </CartProvider>
   </UserProvider>
   <Memo(l) />
 </BrowserRouter>

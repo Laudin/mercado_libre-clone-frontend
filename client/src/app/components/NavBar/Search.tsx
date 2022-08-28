@@ -84,6 +84,9 @@ const Wrapper = styled.div`
   margin: 0 auto;
   margin-top: 5px;
   width: 95%;
+  & p {
+    margin: 0;
+  }
 `;
 const MyLink = styled(Link)`
   width: 114px;

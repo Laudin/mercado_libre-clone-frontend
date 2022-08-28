@@ -1,6 +1,6 @@
 import * as api from '../../api/usersApi'
 
-export const reducer = (state, action: { type: "initialize" | "set_cart" | "delete_from_cart", product: string, initialValue?: string[] }) => {
+export const reducer = (state, action?) => {
   switch (action.type) {
     case "initialize":
       if (action.initialValue) {

@@ -53,6 +53,7 @@ export function ProductsList({ category }) {
 
    return (
       <Wrapper>
+         <Headline>{category}</Headline>
          <ButtonLeft onClick={decreseSlide}>
             <svg x="0px" y="0px" viewBox="0 0 330 330" width='20px' height='24px'>
                <path id="XMLID_225_" d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393
@@ -76,19 +77,19 @@ export function ProductsList({ category }) {
 
 const ButtonLeft = styled.div`
    visibility: hidden;
-   height: 60px;
-   width:60px;
+   height: 50px;
+   width:50px;
    background: white;
    border-radius: 50%;
    position: absolute;
-   left: 0px;
+   left: 8px;
    top: 50%;
    transform: translateY(-50%);
    z-index: 98;
-   box-shadow: 0 7px 16px 0 rgb(0 0 0 / 20%);
+   box-shadow: 0 3px 10px 0 rgb(0 0 0 / 20%);
    transition: all .5s;
    &:hover {
-      box-shadow: 0 7px 16px 0 rgb(0 0 0 / 50%)
+      box-shadow: 0 3px 10px 0 rgb(0 0 0 / 50%)
    }
    & svg {
     position: absolute;
@@ -106,19 +107,19 @@ const ButtonLeft = styled.div`
 `;
 const ButtonRigth = styled.div`
    visibility: hidden;
-   height: 60px;
-   width:60px;
+   height: 50px;
+   width:50px;
    background: white;
    border-radius: 50%;
    position: absolute;
-   right: 0px;
+   right: 8px;
    top: 50%;
    transform: translateY(-50%);
    z-index: 98;
-   box-shadow: 0 7px 16px 0 rgb(0 0 0 / 20%);
+   box-shadow: 0 3px 10px 0 rgb(0 0 0 / 20%);
    transition: all .5s;
    &:hover {
-      box-shadow: 0 7px 16px 0 rgb(0 0 0 / 50%)
+      box-shadow: 0 3px 10px 0 rgb(0 0 0 / 50%)
    }
    & svg {
     position: absolute;
@@ -136,11 +137,14 @@ const ButtonRigth = styled.div`
 `;
 const Wrapper = styled.div`
    position: relative;
-   height: 350px;
+   height: 450px;
    overflow: hidden;
    &:hover ${ButtonLeft}, &:hover ${ButtonRigth} {
       visibility: visible;
    }
+`;
+const Headline = styled.h2`
+   margin: 30px 0 0 10px;
 `;
 const Slide = styled.div`
    position: relative;
@@ -152,7 +156,7 @@ const Slide = styled.div`
 `;
 const ElemWrapper = styled.div`
    display: inline-block;
-   padding: 0 15px;
+   margin: 10px 8px;
    @media (max-width: 770px) {
       width: 33%;
    }
@@ -161,7 +165,7 @@ const ElemWrapper = styled.div`
    }
 `;
 const Img = styled.img`
-   min-height: 200px;
+   max-height: 200px;
    padding: 35px 0px;
    object-fit: contain;
 `;
@@ -188,17 +192,17 @@ const Elem = styled(Link)`
    position: relative;
    display: flex;
    border: 0px solid lightgray;
-   border-radius: 5px;
+   border-bottom-left-radius: 5px;
+   border-bottom-right-radius: 5px;
    background: white;
    flex-direction: column;
-   margin: 10px 0;
-   width: 218px;
-   height: 300px;
+   width: 232px;
+   height: 330px;
    transition: all .15s;
 
   &:hover {
-    height: 320px;
-    box-shadow: 0px 0px 10px 5px lightgray;
+    height: 340px;
+    box-shadow: 0px 0px 10px 2px lightgray;
   }
   &:hover ${Description} {
     opacity: 1;

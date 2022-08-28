@@ -4,6 +4,8 @@ import styled from 'styled-components/macro';
 import { UserContext } from '../../context/User';
 import { loginUser, registerUser } from '../../api/usersApi';
 import { User } from '../../../types/index'
+import { Link, useNavigate } from 'react-router-dom';
+
 
 export function LoginPage() {
 
@@ -15,8 +17,9 @@ export function LoginPage() {
   });
 
   const { currentUser, dispatchUser } = React.useContext(UserContext);
+  const navigate = useNavigate()
 
-  const [reg, setReg] = React.useState(false);
+  const [reg, setReg] = React.useState(false); // user is regestring
   const [error, setError] = React.useState(false);
   const ref = React.useRef<HTMLFormElement>(null);
 
@@ -47,13 +50,14 @@ export function LoginPage() {
             setError(true);
           } else {
             const { id, name, email } = res.data
-            const action = { type: 'set_user', id: id, name: name, email: email }
-            dispatchUser({}, action)
+            dispatchUser({ type: 'set_user', id: id, name: name, email: email })
             setError(false);
           }
         }
       })
       .catch(err => console.log(err))
+
+    navigate('/')
   };
   const showRegister = () => {
     setReg(true);
@@ -65,10 +69,12 @@ export function LoginPage() {
 
   return (
     <>
+      {/* 
+      <-- Uncomment after Test !-->
       <Helmet>
         <title>Login</title>
         <meta name="" content="" />
-      </Helmet>
+      </Helmet> */}
       <Wrapper>
         <Form ref={ref}>
           <h1>Login</h1>
@@ -80,6 +86,7 @@ export function LoginPage() {
             name="email"
             value={user.email}
             onChange={handleEmail}
+            data-testid="email"
           />
           <Label>Password</Label>
           <Input
@@ -88,6 +95,7 @@ export function LoginPage() {
             name="password"
             value={user.password}
             onChange={handlePassword}
+            data-testid="password"
           />
           {reg && (
             <>
@@ -102,11 +110,11 @@ export function LoginPage() {
             </>
           )}
           {!reg ?
-            <Button type="submit" onClick={handleSubmit}>Continuar1</Button>
+            <Button type="submit" onClick={handleSubmit} data-testid="login">Continuar</Button>
             :
-            <Button type="submit" onClick={handleRegister}>Continuar2</Button>
+            <Button type="submit" onClick={handleRegister} data-testid="sign-in">Crear cuenta</Button>
           }
-          {!reg && <a href="#" onClick={showRegister}>Register</a>}
+          {!reg && <a href="#" onClick={showRegister} data-testid="register">Registrate</a>}
         </Form>
       </Wrapper>
     </>
@@ -138,7 +146,20 @@ const Form = styled.form`
 `;
 const Label = styled.label``;
 const Input = styled.input``;
-const Button = styled.button``;
+const Button = styled.button`
+  width: 200px;
+  background: transparent;
+  border: 2px solid var(--blue);
+  border-radius: 2px;
+  outline: none;
+  margin: 20px auto;
+  padding: 8px;
+  &:hover {
+    background: var(--blue);
+    border: 2px solid var(--blue);
+    color: white;
+  }
+`;
 const Error = styled.div`
   color: red;
 `;

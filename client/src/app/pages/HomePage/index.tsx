@@ -32,11 +32,8 @@ export function HomePage() {
                      <Title>Efectivo</Title>
                   </Element>
                </Payments>
-               <Headline>Supermercado</Headline>
                <ProductsList category="Supermercado" />
-               <Headline>Electrodomésticos</Headline>
                <ProductsList category="Electrodomésticos" />
-               <Headline>Vehículos</Headline>
                <ProductsList category="Vehículos" />
             </Content>
          </Wrapper>
@@ -48,7 +45,6 @@ const Wrapper = styled.div`
 
 `;
 const Payments = styled.div`
-   width: 1240px;
    display: flex;
    justify-content: space-evenly;
    margin: 50px 15px;
@@ -66,9 +62,7 @@ const Image = styled.img`
 const Title = styled.div`
    
 `;
-const Headline = styled.h2`
-   margin: 30px 0 0 10px;
-`;
+
 const Content = styled.div`
    width: 1240px;
    margin: auto;

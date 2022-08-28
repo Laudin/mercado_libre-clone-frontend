@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PublishPage /> should match snapshot 1`] = `
+<React.Fragment>
+  <Helmet
+    defer={true}
+    encodeSpecialCharacters={true}
+    prioritizeSeoTags={false}
+  >
+    <title>
+      Perfil
+    </title>
+    <meta
+      content=""
+      name=""
+    />
+  </Helmet>
+  <UserPage__Wrapper>
+    <UserPage__PerfilWrapper>
+      <UserPage__Perfil>
+        <UserPage__ImageWrapper>
+          <UserPage__Image
+            src="http://localhost:3001/static/user_blue.png"
+          />
+        </UserPage__ImageWrapper>
+        <UserPage__Info>
+          <h2 />
+          <p />
+        </UserPage__Info>
+      </UserPage__Perfil>
+      <UserPage__ElemWrapper>
+        <UserPage__Elem>
+          Mis datos
+        </UserPage__Elem>
+      </UserPage__ElemWrapper>
+      <UserPage__ElemWrapper>
+        <UserPage__Elem>
+          Seguridad
+        </UserPage__Elem>
+      </UserPage__ElemWrapper>
+    </UserPage__PerfilWrapper>
+  </UserPage__Wrapper>
+</React.Fragment>
+`;

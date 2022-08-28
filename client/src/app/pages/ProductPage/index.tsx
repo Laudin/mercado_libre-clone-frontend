@@ -10,14 +10,28 @@ export function ProductPage(props) {
 
    const { cart, dispatchCart } = React.useContext(CartContext);
 
-   const [product, setProduct] = React.useState<any>(null)
+   const [product, setProduct] = React.useState<Product | null>({
+      id: 'string',
+      name: 'string',
+      category: 'string[] | string',
+      brand: 'string',
+      model: 'string',
+      price: 1,
+      stock: 1,
+      description: 'string',
+      state: 'string',
+      photos: ['string[]'],
+      sellerId: 'string',
+      sellerName: 'string',
+      sellerEmail: 'string'
+   })
    const [mainImage, setMainImage] = React.useState<any>(null)
    const [cant, setCant] = React.useState<any>(1)
    const ref = React.useRef<any>(null)
    const location = useLocation()
 
    React.useEffect(() => {
-      window.scrollTo(0, 0)
+      //window.scrollTo(0, 0) //comment for testing
       getProductsById(location.pathname.slice(1)).then(res => {
          setProduct(res)
          setMainImage('http://localhost:3001/' + res.photos[0])
@@ -67,15 +81,15 @@ export function ProductPage(props) {
       closeup.style.display = 'none'
    }
    const handleCart = () => {
-      dispatchCart({}, { type: "set_cart", product: product.id })
+      dispatchCart({ type: "set_cart", product: product!.id })
    }
 
    return (
       <>
-         <Helmet>
+         {/* <Helmet>
             <title>Clon Mercado Libre</title>
             <meta name="" content="" />
-         </Helmet>
+         </Helmet> */}
          {product ? <Wrapper>
             <Show>
                <GalleryWrapper>
@@ -102,7 +116,7 @@ export function ProductPage(props) {
                      : 'Último disponible!'}
                   </div>
                   <Buy>Comprar</Buy>
-                  <Addcart onClick={handleCart}>Agregar al Carrito</Addcart>
+                  <Addcart onClick={handleCart} data-testid="add-cart">Agregar al Carrito</Addcart>
                </InfoWrapper>
             </Show>
             <Characteristics></Characteristics>

@@ -3,6 +3,7 @@ import { RootState } from './RootState';
 export type { RootState };
 
 export interface Product {
+  id: string,
   name: string,
   category: string[] | string,
   brand: string,

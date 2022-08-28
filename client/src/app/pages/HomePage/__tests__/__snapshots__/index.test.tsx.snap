@@ -8,20 +8,60 @@ exports[`<HomePage /> should render 1`] = `
     prioritizeSeoTags={false}
   >
     <title>
-      HomePage
+      Mercado Libre
     </title>
     <meta
-      content="A Boilerplate application homepage"
-      name="description"
+      content=""
+      name=""
     />
   </Helmet>
-  <HomePage__Container>
+  <HomePage__Wrapper>
     <Slider />
-    <HomePage__ContentWrapper>
-      <HomePage__Content>
-        <ProductsList />
-      </HomePage__Content>
-    </HomePage__ContentWrapper>
-  </HomePage__Container>
+    <HomePage__Content>
+      <HomePage__Payments>
+        <HomePage__Element>
+          <HomePage__Image
+            src=""
+          />
+          <HomePage__Title>
+            Tarjeta de crédito
+          </HomePage__Title>
+        </HomePage__Element>
+        <HomePage__Element>
+          <HomePage__Image
+            src=""
+          />
+          <HomePage__Title>
+            Tarjeta de débito
+          </HomePage__Title>
+        </HomePage__Element>
+        <HomePage__Element>
+          <HomePage__Image
+            src=""
+          />
+          <HomePage__Title>
+            Cuotas sin tarjeta
+          </HomePage__Title>
+        </HomePage__Element>
+        <HomePage__Element>
+          <HomePage__Image
+            src=""
+          />
+          <HomePage__Title>
+            Efectivo
+          </HomePage__Title>
+        </HomePage__Element>
+      </HomePage__Payments>
+      <ProductsList
+        category="Supermercado"
+      />
+      <ProductsList
+        category="Electrodomésticos"
+      />
+      <ProductsList
+        category="Vehículos"
+      />
+    </HomePage__Content>
+  </HomePage__Wrapper>
 </React.Fragment>
 `;

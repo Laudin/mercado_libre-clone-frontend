@@ -103,7 +103,7 @@ const CategoryWrapper = styled.ul`
       content: "";
       position: absolute;
       top: -5px;
-      right: 81px;
+      right: 91px;
       background: inherit;
       width: 10px;
       height: 10px;
@@ -113,8 +113,11 @@ const CategoryWrapper = styled.ul`
 const Category = styled.div`
    position: relative;
    display: inline;
+   margin-right: 10px;
    & svg {
-      margin-left: 5px;
+      position: absolute;
+      margin-top: 0.3rem;
+      margin-left: 3px;
    }
    &:hover ${CategoryWrapper} {
       visibility: visible;
