@@ -1,0 +1,39 @@
+day 1 - Created the repo (16/7/22), with server and client. installed yarn, using that insted of npm for some reason.
+	Client with React using react-boilderplate (should've used create-t3-app?), coding in Typescript, 
+	styling with styled-components.
+day 2 - Cleaned all up and starting coding the Nav structure, no logic yet. first commit.
+	Added an ssh-key to my sistem and github, so now I can git commit -m "comment" and git push origin master.
+	Developed a slider or carousel from scratch.
+day 3 - Fixed the carousel, now it has another mechanism where it moves all the slider wrapper trought the X axis
+	and it has cloned elements (first and last) that act as the start and end of the carousel. it's hard to explain.
+day 4 - Implemented a slider for showing products
+day 5 - Created a Login Form. Build the server (npm run devStart) with Typescript, using Prisma and Express. 
+	Needed to create a prisma configuration file (read docs)
+	Installed modules: prisma - typescript - ts/node - @types/node - nodemon - @prisma/client - jsonwebtoken
+	Prisma commands: npx prisma init --datasource-provider postgresql / npx prisma migrate dev --name [name]
+	/ npx prisma generate
+	Authentication with jwt, still need to store token in localStorage and attach it to the header..
+day 6 - Authentication works as it should. Created a Custom Hook so I can reuse de code for accessing the token.
+	Working on the api. All the getters and setters
+day 7 - Had to update react-router because the boilerplate usess an older version (v5.x) and v6 is more powerfull
+	Also updated react from v16 to v18
+	Implemented a global state using React Context to keep the logged User info around
+	Started creating a publish product page form
+	Publish a product:
+	Titulo -> Categoria -> Marca & Modelo(opt) -> Condicion -> Color?/Caracts -> Fotos(portada) -> Stock -> Ficha tecnica -> Precio -> descripcion -> Ver publicacion
+day 8 - Populate the form with useForm register and error for every section of the form.
+day 9 - Connected the Form page to the API endpoint so now I can create products. It's secured with wjt.
+day 10 - yarn add @testing-library/react @testing-library/jest-dom @types/jest @types/react-test-renderer @types/testing-library__jest-dom jest-styled-components react-test-renderer --save-dev
+	Started building some tests with Jest
+day 11 - Improved the file management, started working in the Product Page, specialy the zoom img function.
+day 12 - Finished the Product Page and the zoom product img.
+	Started working in the Cart and the favorite function. Deleted the favorite function.
+day 13 - Making the query result page. Struggling with the filter function
+day 14 - Done some funtionalities of the filter, its not complete but is working.
+day 15 - Took a break to concentrate on my Portfolio.
+	Had an idea to add pagination to the Result page. Something like Infinite Scrolling. (see https://levelup.gitconnected.com/creating-a-data-pagination-function-in-postgresql-2a032084af54)
+day 16 - Installed cookie-parser in the server. Now the System works with cookies, had to configre cors.
+day 17 - Added Cart server api. Now using CartContext insted of CustomHook, but don't know how to initialize the
+	cart since it's located at the server.
+
+
