@@ -26,26 +26,26 @@ import { UserProvider } from './context/User';
 import { CartProvider } from './context/Cart';
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyC7daL73tZNNX5BMbM5eaqQnYtuPwHA03o",
-  authDomain: "mercado-libre-b8b8b.firebaseapp.com",
-  projectId: "mercado-libre-b8b8b",
-  storageBucket: "mercado-libre-b8b8b.appspot.com",
-  messagingSenderId: "908602165699",
-  appId: "1:908602165699:web:ac11c53f382725ab62d576",
-  measurementId: "G-RK3V1DM5B5"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyC7daL73tZNNX5BMbM5eaqQnYtuPwHA03o",
+//   authDomain: "mercado-libre-b8b8b.firebaseapp.com",
+//   projectId: "mercado-libre-b8b8b",
+//   storageBucket: "mercado-libre-b8b8b.appspot.com",
+//   messagingSenderId: "908602165699",
+//   appId: "1:908602165699:web:ac11c53f382725ab62d576",
+//   measurementId: "G-RK3V1DM5B5"
+// };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
 
 export function App() {
   const { i18n } = useTranslation();
