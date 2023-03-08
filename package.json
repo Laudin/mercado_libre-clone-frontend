@@ -24,6 +24,7 @@
     "i18next-scanner": "1.2.1",
     "inquirer": "7.3.3",
     "inquirer-directory": "2.2.0",
+    "lint-staged": "^13.1.2",
     "node-plop": "0.26.2",
     "plop": "2.7.4",
     "prettier": "2.7.1",
